@@ -34,9 +34,9 @@ jobs:
       - name: Install the Exo 2 Font
         run: |
           mkdir -p ~/.local/share/fonts/exo2
-          curl -L https://github.com/google/fonts/raw/main/ofl/exo2/Exo2%5Bwght%5D.ttf -o ~/.local/share/fonts/exo2/Exo2[wght].ttf
+          curl -L https://www.fontsquirrel.com/fonts/download/exo-2 -o exo2.zip
+          unzip -q exo2.zip -d ~/.local/share/fonts/exo2/
           fc-cache -f -v
-
 
       - name: Install Typst
         if: steps.cache-typst.outputs.cache-hit != 'true'
