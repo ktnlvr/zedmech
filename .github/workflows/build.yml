@@ -31,6 +31,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y curl unzip
 
+      - name: Install the Exo 2 Font
+        run: |
+          mkdir -p ~/.local/share/fonts/exo2
+          curl -L https://github.com/google/fonts/raw/main/ofl/exo2/Exo2%5Bwght%5D.ttf -o ~/.local/share/fonts/exo2/Exo2[wght].ttf
+          fc-cache -f -v
+
+
       - name: Install Typst
         if: steps.cache-typst.outputs.cache-hit != 'true'
         run: |
