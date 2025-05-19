@@ -17,7 +17,7 @@
 
 #align(center)[#text(size: 24pt)[*Zedmech*]]
 
-A simple rule set for hex-based tabletop mech fighting game.
+A simple rule set for hex-based tabletop mech fighting game. Hackable, simplistic, quick.
 
 Builds on #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
 
@@ -25,7 +25,7 @@ Builds on #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
 
 Every mech starts with...
 
-- 10 Hull Points (HP)
+- 8 Hull Points (HP)
 - 8 Heat Capacity (H)
 - 4 Movement (M), measured in #hex
 - 3 Slots (S)
@@ -141,7 +141,7 @@ At the end of Mech's turn if took damage knock-back all adjacent Mechs by 1 #hex
 
 === Hunter Mode
 
-After destroying a Mech regain 1 HP and optionally move 2 #hex.
+After destroying a Mech regain 1 HP and optionally immediately move 2 #hex.
 
 === Kinetic Convertor
 
@@ -208,6 +208,12 @@ may only attack the decoy. Destroyed when hit once.
 
 If you critically hit an enemy they can not enter Overwatch on the next turn.
 
+=== Fire!
+Mech fires all weapons at once.
+
+=== Optical Flare
+2 Heat. Choose 2#hex blast radius within 7#hex. Enemies in that area suffer Disadvantage on all attacks until your next turn.
+
 == Mods
 
 Sometimes you want to give your Mech a little more _zing_. Only
@@ -215,12 +221,33 @@ one Mod can be installed at a time. Make them count.
 
 === Adaptive Logic Core
 
+Once per turn you may reroll a miss. On a hit gain the heat again.
+
+//=== Molten Core
+
+//=== Shadow Step
+
+=== Nanites
+
+Must have at least 2 deployables. Once per turn. Destroy all deployables and vent the equivalent in Heat.
 
 === Overload Sigil
+
+Once per game. Immediately DETONATE when overheated. Vent all remaining 
 
 === Motor Furnace
 
 Once per turn, when getting 1 Heat convert it into 1#hex of free movement.
+
+//=== Blazing Matrix
+
+=== Supression Protocol
+
+The target takes 1 Damage for every layer of elevation they lose due to knock-back from your attack.
+
+=== Hexdense Plating
+
+Once per turn convert incoming damage into heat and take knock-back equal to damage.
 
 === Reactive Overdrive
 
@@ -230,19 +257,29 @@ If you end your turn above #half your heat capacity gain 1#hex of free movement 
 
 When landing a critical heat immediately vent 1 Heat.
 
+=== Havoc Driver
+After destroying a Mech immediately fire a weapon.
+
+=== Quantum Double
+Every weapon fires twice for the same Heat. If either shot fails take 1 Damage and 1 Heat.
+
+=== Magnetic Resonance.
+3 Heat. Force a target in line of sight to roll on the
+Overheat table for any effect except DETONATION.
+
 == Taking Turns
 
 Each Mech has 3 actions on its turn. An action can be spent...
 
 - Firing a weapon.
-- Smashing something in close combat.
+- Brawling in close combat.
 - Moving around.
 - Activating specials.
 - Venting some heat to cool down.
 
 Actions can also be spent out of turn on activating passive reactive specials.
 
-== Rolling
+=== Rolling
 
 When asked to roll dice tally your boons and banes.
 
@@ -254,11 +291,17 @@ If more advantage than disadvantage pick the highest, otherwise pick the lowest.
 
 1 and 2 are failures. 3, 4 and 5 are successes. 6 is a _critical_ success. On a critical success something extra might happen.
 
-== Line of Sight
+=== Line of Sight
 
 When a direct line can be drawn from your Mech's #hex to another #hex the Mech is considered to have _line of sight_ to it or simply _see_ it.  
 
 If a direct line of sight can be drawn from the Mech or any of the Mech's deployable, it is considered to _sense_ it or have it _within sensor distance_.
+
+=== Knock-back
+
+Some weapons will stagger you Mech. When taking knock-back move your Mech the corresponding amount of #hex away from the attacker.
+
+If a wall is in the way take damage equal to the remaining knockback.
 
 == Firing
 
@@ -267,6 +310,14 @@ Chose a weapon. Each weapon may only fire once per turn.
 Pick a space in your line of sight, doesn't have to be occupied by anything.
 
 Roll to hit. On a success deal the described damage and apply any effects.
+
+== Brawling
+
+When two Mechs are adjacent they are considered to be in close combat. The attacker may roll to hit for 1 Damage. If the damage goes through apply 2#hex knockback.
+
+== Moving
+
+You may move up to your Mech's Movement in #hex. Going up one elevation level counts as 1#hex of movement.
 
 == Venting
 
@@ -279,6 +330,37 @@ When a Mech has exhausted all its actions or the player voluntarily decides to i
 *Venting* halves the Mech's current heat.
 
 Going into *Overwatch* puts the Mech in "high-alert" mode. If any enemy enters its cone of vision it may perform a reaction shot. Fire like the Mech would on its turn and subtract one action from its next turn.
+
+== Overheating
+
+When a Mech reaches its Maximum heat, immediately roll on the Overheat
+table and take 1 Damage. Add the amount of Heat over Mech's
+maximum heat capacity to the roll.
+
+#table(
+  columns: (auto, 1fr), 
+  inset: 5pt, 
+  align: horizon, 
+  table.header([*d*], [*Effect*]),
+  [1], [Weapon Misfire, fire a random weapon in a random direction], 
+  [2], [Vulnerable, add +1 to any Damage taken until next turn], 
+  [3], [Locomotion Damaged, half the movement until the next turn], 
+  [4], [Immobilized, may not move until next turn], 
+  [5], [Shutdown, may not perform any actions except activating Equipment or Mods until next turn], 
+  [6], [DETONATION, Blast radius of 4#hex. Roll and deal the number +1 Damage and Heat to everything in the blast area. Targets roll, save on a critical success.]
+)
+
+== Half-cover
+
+If an object is partially obscured by something the attacker gains Disadvantage on any attack.
+
+If the attacker and target are adjacent the attacker does not gain cover.
+
+== Elevation
+
+Mechs on high ground gets Advantage against all Mechs lower than them. 
+
+Mechs on low ground gets Disadvantage against all Mechs higher than them.
 
 #pagebreak()
 
