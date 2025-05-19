@@ -1,311 +1,299 @@
 #set page("a5", background: image("assets/backdrop.png", fit: "stretch"))
-#set document(author: "Made by Artur Roos from Bill Ward's Mek28", title: "Zedmech")
-#set text(font: "Exo 2")
+#set document(author: "Artur Roos", title: "Zedmech")
+#set text(font: "Exo 2", size: 12pt)
 
-#show "Heat": smallcaps
-#show "Damage": smallcaps
-#show "Slot": smallcaps
-#show "Mech": smallcaps
+#let cheatsheet = true
+#let verbose-math = true
+
+#let secret(body) = if cheatsheet [
+  #text(font: "New Computer Modern")[#body]] else []
+
+#let verbose(body) = if verbose-math [#secret(body)] else []
 
 #let hex = sym.hexa.stroked
+
 #let half = str.from-unicode(0xBD)
 #let thirds = str.from-unicode(0x2154)
 
-// FEEDBACK:
-// 1. Nerf Matrix
-// 2. Not enough suicide
-// 3. Not enough AoE
-// 4. More pictures
-// 5. Encourage shooting from different weapons
-// 6. Basic hit more often
-// 7. Balance the guns
-// 8. More HP?
-// 9. Fuck overpowered abilities
-// 10. Overheat from any agressive gameplay
-// 11. Less range
-// 12. More obstacles
-// 13. Overheating in the water is too op
-// FIXES: Allow voluntary overheating, use pathfinder-like actions
-// SAVES remove tactical stuff.
-// ROOT ATTACKS: 6 - Crit, 5/4/3 - Hit, 2/1 - Pass
-
 #align(center)[#text(size: 24pt)[*Zedmech*]]
 
-#align(right)[By Artur Roos.]
+A simple rule set for hex-based tabletop mech fighting game.
 
-A simple rule set for hex-based tabletop mech fighting game. Model-agnostic and applicable to PvP, PvE and PvPvE games.
-
-Builds on #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28] 
+Builds on #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
 
 == Assembling
 
 Every mech starts with...
 
 - 10 Hull Points (HP)
-- 10 Heat (H)
+- 8 Heat Capacity (H)
 - 4 Movement (M), measured in #hex
 - 3 Slots (S)
 - 1 Mod
 
-You can buy/sell 2HP for 1 Movement. Every 2HP sold or gained also increases or decreases 1 slot respectively.
+You can buy/sell 2HP for 1 Movement and 1 Slot.
 
-For instance, a Mech with 8HP would gain 1 extra movement and gain 1 slot, ending up as a 8HP/10H/5M/4S.
+== Weapons
 
-=== Weapons
+- *CANNON*. 1 Slot, 12#hex, 2 Heat, 2 Damage, Knock-back.
+- *CRYO*. 1 Slot, 12#hex, 1 Heat, 1 Damage. Decrease enemy movement by 1 for 1 turn.
+- *HEAVY*. 2 Slots, 14#hex, 2 Heat, 3 Damage, 2 Knock-back. Takes an action to reload.
+- *ROCKET*. 1 Slot, 8#hex. 2 Heat, 1 Damage. Blast radius 1#hex.
+- *LASER*. 1 Slot, 18#hex. 2 Heat, 1 Damage. Pierces on success, roll for the next enemy in line. Ignore cover.
+- *FLAMETHROWER*. 1 Slot, 4#hex, 1 Heat. Fires in a cone. Targets gain +3 Heat. +1 more Heat on a crit.
 
-Ranged weapons work at a distance.
+== Specials
 
-- *MEDIUM*: 12#hex, 2 Heat, 2HP Damage, 1 Slot
-- *CRYO*: 12#hex, 1 Heat, 1HP Damage, 1 Slot. Decreases enemy movement by 2#hex and heat by 1.
-- *HEAVY*: 14#hex, 2 Heat, 3HP Damage, Knockback, 2 Slots. Must generate 1 Heat to reload after firing.
-- *LASER*: 18#hex, 2 Heat, 1HP Damage, 1 Slot. Pierces 2 enemies in a line.
-- *ROCKET*: 8#hex, 2 Heat, 1HP Damage, 2 Slots. Blast radius 1#hex.
+Takes 1 slot. Activating requires 1 action. If reactive, takes 1 action from the next turn.
 
-=== Attachments
+=== Escalation
+Gain +1 to hit every time you critically hit. Resets on a miss.
 
-Cost 1 slot, attach to a specific weapon. Each weapon can have only 1.
+#secret[
+  $t = #text[Turn Number]$
 
-- *Thermal*. Instead of dealing Damage deal Heat.
-- *Explosive*. Add 1#hex knockback.
-- *Homing*. For 1 extra Heat, fire at an enemy without line of sight, but within half range.
-- *Reliable*. For 1 extra Heat ignore all damage reduction.
-- *Power Coils*. If this shot overheats the Mech deal 2 additional damage. 
-- *Chain Link Barrel*. If this weapon hits immediately fire another weapon for 1 Heat.
-- *Ricochet Round*. On a miss may bounce to a different target within 3#hex once, roll to hit again.
-
-=== Passive Equipment
-
-Costs 1 slot, are attached to the Mech.
-
-- *Molten Core*. The Mech recovers up to #thirds of its HP rounding down transferring its equivalent into Heat.
-- *Stabilized*. When knocked back can chose the direction arbitrarily.
-- *Sinks*. Has 1 extra Heat.
-- *Shield*. Reduce incoming Damage by 1, but not lower than 0.
-- *Reactor*. When Heat is above #half of its maximum deal additional 1 damage.
-- *Leap Springs*. Ignore 1#hex obstacle or difficult terrain per movement. You may not end movement in an obstacle.
-- *Nitro*. Move extra 2#hex.
-- *Beacon*. While you or any of your deployables maintain line of sight with an enemy gain +1 to hit against them.
-- *Gauss Hook*. Instead of knockback you may pull an enemy towards yourself. Knockback rules apply as if the enemy is knocked from the opposite direction.
-- *Cloak*. -1 to hit on the Mech if it did not move during its turn.
-- *Recoil Inverter*. When knocking back an enemy move 1#hex in the opposite direction.
-- *Thrusters*. After moving 3#hex or more gain +1 to hit in close combat.
-- *Repulsion*. At the end of Mech's turn, if it took damage all adjacent Mechs are knocked back 1#hex.
-- *Hunter Module*. After destroying a Mech regain 1 HP and move 2#hex.
-- *Kinetic Convertor*. Gain 1 Movement on the next turn after getting Knocked back.
-- *Pathfinder Override*. Ignore all effects of difficult terrain, but gain 1 heat if ending movement in it.
-- *Echo Barrage*. On a successful hit redirect it to an enemy within 3#hex for 1 Heat.
-- *Lockstep Sync*. When in Overwatch, if a mech within line of sight Mech fires a Weapon you may fire too.
-- *Sensor Bait*. +1 to hit against enemies that targeted the Mech since its last turn.
-- *Blade Anchor*. Immune to knockback if attacked in melee.
-
-=== Active Equipment
-
-- *Turret*. 1 Heat. Use once. Spawn a 3HP/3H/0M/0S/6+ turret 1#hex away. Activated separately.
-- *Repair Drone*. 1 Heat. Use once. Recover 2 HP from the activating Mech or a Mech in sight.
-- *Plasma Wall*. 1 Heat. Use once. Place an 2x1 immobile wall, within Mech's line of sight. If the Mech doesn't maintain line of sight with it at the end of the Mech's turn the wall disappears.
-- *Deployable Drone*. Generate 1 Heat and roll. On a 4+ place a small drone on a neighboring #hex. It is a 2HP/4H/4M/0S/6+. Activates on the same turn as its creator Mech. Is destroyed when overheated. A Mech can only have (HP / 2 - 1) drones max at a time.
-- *Decoy*. 2 Heat. Use once. Place a decoy within Mech's line of sight. When an enemy can see both the Mech and the Decoy it may only attack the decoy. Destroyed when hit once.
-- *Fire!* Mech fires all the weapons at once.
-- *Gravity Well*. Pull all Mechs within 3#hex by 1#hex closer.
-- *Lock In*. 1 Heat. Chose an enemy Mech. All atacks against them have +2 to hit for any other attackers.
-- *Blink Engine*. 2 Heat. Teleport 3#hex in any direction, may teleport through enemies. Does not count as movement.
-- *Highlight*. 2 Heat. Select an enemy, Saves on 5+. Until next turn any attacks against them ignore cover and gain 1#hex knockback.
-- *Overcharged Lance*. 2 Heat. Fire a beam up to 12#hex dealing 2 Damage. Ignore cover.
-- *Flame Burst*. Fire a cone, 1 Heat per #hex of distance. Deal 1 Heat per every 2 Heat spent.
-- *Gravity Spike*. 1 Heat. Pull an enemy within line of sight 2#hex toward the Mech. Deal 1 Damage. Deal 2 extra damage if it collides with a cover or mech.
-- *Thermal Bloom*. 2 Heat. Choose a 3#hex blast radius within 6#hex. All mechs within gain 1 Heat now and 1 more if they end their turn inside it.
-- *Vortex Shred*. 3 Heat. 5#hex cone. All enemies within it take 2 Damage and get pulled toward the center of the cone.
-- *Optic Flare*. 2 Heat. Choose a 2#hex blast radius within line of sight with range of 7#hex. Enemies in that area suffer -1 to hit on their next turn.
-
-=== Mods
-
-Sometimes you want to give your Mech a little more _zing_. Only one Mod can be installed at a time.
-
-- *Adaptive Logic Core*. Once per game reroll a failing hit. If the reroll hits vent 1 Heat.
-// FIX: Escalates while keeps hitting.
-- *Escalation*. For every shot made with a specific weapon increase the to hit by 1. Reset on a miss or when the Mech fires different weapon.
-- *Overload Matrix*. Go up to double Heat capacity. Do not roll Saves if overheated. If you take damage while overheated you instantly DETONATE.
-- *Hexdense Plating*. Ignore the first incoming damage every turn.
-- *Hammer Jam*. 3 Heat. Chose an enemy within 6#hex. Their Mod is inactive while they are in Mech's line of sight.
-- *Nanites*. Must have at least 2 deployables. Destroy all deployables and vent the equivalent in Heat.
-- *Horus Core*. Once per game. DETONATE when Overheated. Vent all heat and reset to 1HP.
-- *Havoc Driver*. 2 Heat. After destroying a drone immediately fire a Weapon.
-- *Background Daemon*. Does not occupy a Mod slot. Gain an additional Mod. At the start of each turn roll. On a 1 give up control to the closest enemy in the turn queue.
-- *Quantum Double*. Every weapon fires twice for the same Heat. If either shot fails take 1 Damage and 1 Heat.
-- *Magnetic Resonance*. 3 Heat. Force the target to roll on the Overheat table for any effect except DETONATION.
-- *Supression Protocol*. If a target is knocked back by an attack it takes additional 2 Damage.
-// EXPLOIT: PLAYER MOVES BEHIND COVER AND THEN COMES BACK
-- *Shadow Step*. If you start your turn outside of any enemy's vision your first attack is a guaranteed hit. No saves.
-
-== Fighting
-
-=== Doing Stuff
-
-On it's turn a Mech can do however many actions it wants up to its maximum heat.
-- Fire a gun 
-- Move about
-- Smash something
-- Throw something
-- Use a Mod or an Equipment
-- Interface with things
-- Scan enemies
-
-==== Firing
-
-Add heat as prescribed by the weapon. Target a position in space, roll and hit on 5+. 
-
-If the hit is targeted at the back 90#sym.degree of a mech add +1 to the dice. 
-
-If the target and the shooter are on neighboring hexes add +1 to the dice.
-
-The target can do an attempt to Save. On a 6+ it halves the incoming Damage rounding down.
-
-==== Knockback
-
-Some weapons overpowering the target and stagger it. If a weapon has knock-back, on a successful hit move the target back by the amount of #hex equal to the Damage taken.
-
-If a Mech bumps into another Mech, they both start moving as if knocked back.
-
-If knocked back Mechs bump into an obstacle it takes damage equal to knockback left.
-
-==== Moving
-
-Each mech can move the number of #hex up to it's Movement for 1 Heat. The Mech must turn in the direction of the movement.
-
-==== Smashing
-
-When two Mechs are adjacent they are considered to be in Close Combat. The attacker may roll and hit for 1HP Damage on a 5+. The attacker may turn to face the target.
-
-The target Saves on a 6+. If the Damage goes through it is knocked back by 2 #hex. 
-
-==== Throwing
-
-If there is an object or a carcass of a Mech up to #half of Mech's HP it may pick it up.
-
-==== Scanning
-
-On its turn a Mech may chose to Scan one enemy within its or its deployables' line of sight. The target saves on a 5+. 
-
-On fail discover the target's current and maximum Hull Points, Heat Capacity and Movement.
-
-=== Damage
-
-When taking Damage, subtract it from the Mech's HP and roll on the Damage table. The effects are permanent, unless specified otherwise.
-
-If Mech's HP reaches 0 it is incapacitated and unavailable, it may no longer be activated.
-
-=== Ending the Turn
-
-At the end of its a turn, a Mech can chose to go into Overwatch or Vent off #half of its heat.
-
-==== Overwatch
-
-Until the Mech's next turn it is on high alert. If an enemy enters its vision, the Mech may Fire at or Smash it once.
-
-If the Mech fires, the movement of the enemy is stopped before the effects of firing are resolved.
-
-If the Mech Smash, the enemy's movement is considered finished.
-
-==== Overheating
-
-When a Mech reaches its Maximum heat, roll on the Overheat table and take 1 Damage. Add the amount of Heat over Mech's maximum heat capacity to the roll.
-
-#table(
-  columns: (auto, 1fr), 
-  inset: 5pt, 
-  align: horizon, 
-  table.header([*d*], [*Effect*]),
-  [1], [Weapon Misfire, fire a random weapon in a random direction], 
-  [2], [Vulnerable, add +1 to any Damage taken until next turn], 
-  [3], [Locomotion Damaged, half the movement until the next turn], 
-  [4], [Immobilized, may not move until next turn], 
-  [5], [Shutdown, may not perform any actions except activating Equipment or Mods until next turn], 
-  // FIX: Maybe reduce radius?
-  [6], [DETONATION, Blast radius of 4#hex. Roll and deal the number +1 Damage and Heat to everything in the blast area. Save on 6+.]
-)
-
-== Optional Rules
-
-=== Half-Cover
-
-If an object is partially obscured by something (by, for instance, a barrel or a crate) it gets +2 on its save. If the attacker is adjacent to the protecting half-cover the defender does not get a bonus on their save.
-
-=== Difficult Terrain
-
-Some terrain can be "difficult" to traverse: bogs, marshes, quicksand or molten rock. It can incur additional penalties for movement.
-
-- Does it hurt?
-  - Take 1 Damage for ending movement in it.
-- Is it hot?
-  - Take 1 Heat for ending movement in it.
-- Is it hard to traverse?
-  - 1#hex of movement across it counts as 2#hex.
-- Is it _really really_ hard to traverse?
-  - Stop movement on entry.
-- Is it slippery?
-  - Involuntarily continue movement for 1#hex in the last movement direction.
-
-=== Cool Currents
-
-Mechs do not overheat on water tiles.
-
-== Designing
-
-It is important to extend the game as you wish, to ensure that all the components play nicely together, try respecting the design goals.
-
-+ Make a skill do something that no other skill can do.
-+ Make composable things. Different abilities should interact and respond to each other.
-
-=== Elevation
-
-// TODO: Write this situation properly
-
-When a shot is made from a higher elevation to a lower elevation it may ignore all cover.
-
-A target at a higher elevation gains +1 to save for every difference in elevation above 1.
-
-#pagebreak()
-
-#align(right+top)[The following section is intended for the Game Masters. It describes building encounters, interesting abilities and other similar stuff.#linebreak()*IF YOU ARE A PLAYER, STAY AWAY*.]
-
-== Encounters
-
-Enemies are much simpler than the players. They rarely have per-mech abilities, saving or real venting. The only parameter that is important to track is their HP.
-
-It is considered that an Enemy vents out all of its heat at the end of its turn. When overheated they also rarely explode, just self-destruct.
-
-=== Point Buy
-
-To create a balanced encounter consider 6 points per player. In contrast to players there is no advantage in making every enemy individualistic. Most of the time they should create interesting tactical scenarios, so treat them like a tool for that. 
-
-#table(
-  columns: (auto, auto, auto, auto, auto, 1fr), 
-  inset: 5pt, 
-  align: horizon, 
-  table.header(
-    [*P*], [*Role*], [*HP*], [*H*], [*M*], [*Description*]
-  ),
   
-  [2], [Grunt], [2], [2], [4], [Cannon fodder and minor trouble],
-  [3], [Striker], [4], [3], [5], [Brute damage, simple tactics],
-  [3], [Support], [3], [5], [4], [Heals, summons drones],
-  [4], [Tank], [6], [5], [3], [Immobile, impenetrable],
-  [5], [Controller], [3], [5], [5], [Stalls, denies area],
-  [5], [Sniper], [3], [4], [4], [Long range, sneaky],
-  [8], [Elite], [8], [5], [5], [Mix of the above, main threat]
-)
+  $b_t = #text[Bonus Damage at turn] t$
+  
+  $E(b_t) = #text[Expected Bonus Damage on turn] t$
 
-=== Tags
+  $E[B_t] = #text[Expected Bonus Damage _accumulated_ by turn] t$
 
-- *Disruptive*. First Action for Mechs within 2#hex costs +1 Heat.
-- *Sensor Ghost*. May be targeted only within 4#hex.
-- *Booster*. Allies within 4#hex may reroll 1 attack die per round.
-- *Deflective*. Roll saves. On 6+ save reflect 1 Damage to the attacker.
-- *Phase Agnostic*. Ignores knockback and terrain effects.
-- *Redundancy*. Can ignore Overheating once.
+  $E[B_t] = sum_i E[b_i] $ by linearity
 
-=== Environmental Toys
+  $ b_0 = 0, E[b_0] = 0 $
+  
+  1. With $P = 1/6$ crits: $b_t = b_(t-1) + 4$ 
+  2. With $P = 3/6$ hit, so: $b_t = b_(t-1)$
+  3. With $P = 2/6$ misses: $b_t = 0$
+
+  $ E[b_t] &= 2/6 dot 0 + 4/6 (E[b_(t-1)] + 1/6 dot 1)\
+          &= 4/6 E[b_(t - 1)] + 4/36\
+          &= 2/3 E[b_(t - 1)] + 1/9 $
+          
+  $ therefore $
+
+  //$r = lim_(t arrow infinity) (E[b_t]) / (E[b_(t - 1)]) = 3/2$
+
+  $ Delta E[b_t] &= E[b_(t + 1)] - E[b_(t)]\
+            &= 2/3 E[b_(t)] + 1/9 - E[b_t]
+            &= 1/9 -1/3E[b_t] $
+
+  $ Delta E[b_t] + 1/3 E[b_t] = 1/9 $
+
+  #verbose[
+    $ e^(integral 1/3 d t)  &= e^(t/3) \ 
+      e^(t/3) E[b_t]
+    
+    $
+  ]
+]
+
+=== Assault Weapon
+On a critical hit you may try to fire again at a different target. Can not be repeated more than once per turn.
+
+=== Echo Chamber
+On a miss once per turn you may spend the same price in Heat to shoot from the same gun at another target.
+
+=== Homing Shots
+For 1 Heat fire at a target within half range. Ignore all advantage and disadvantage.
+
+=== Heat Sinks
+Has 2 extra heat capacity.
+
+=== Shield
+Reduce incoming damage by 1, but not lower than 0. Ignored on crits.
+
+=== Molten Core
+When heat is above #half gain Advantage on firing.
+
+=== Stabilized
+When knocked back you may decide to be knocked back diagonally.
+
+=== Leap Springs
+Ignore 1#hex obstacle or difficult terrain per movement. You may not end a movement in an obstacle.
+
+=== Nitro
+Move extra 2#hex per movement.
+
+=== Beacon
+
+If a target is in cover to you, but not to any of your deployables - ignore cover.
+
+=== Gauss Hook
+
+Instead of knock-back pull an enemy towards yourself. Knock-back rules apply as if the enemy is being knocked-back from the opposite direction.
+
+=== Cloak
+
+Disadvantage to any long-range (1#hex or more) attacks against a Mech if it didn't move during this and previous turns.
+
+=== Recoil Inverter
+
+After knocking back an enemy move 1#hex in the opposite direction.
+
+=== Thrusters
+
+After moving 3#hex or more gain Advantage to hit in close combat. Does not stack.
+
+=== Repulsion Well
+At the end of Mech's turn if took damage knock-back all adjacent Mechs by 1 #hex.
+
+=== Hunter Mode
+
+After destroying a Mech regain 1 HP and optionally move 2 #hex.
+
+=== Kinetic Convertor
+
+Gain 1 free movement on the next turn after getting knocked back.
+
+=== Pathfinder Override
+
+If you are not ending movement in difficult terrain you may ignore all effects, but gain 1 Heat per movement.
+
+=== Echo Barrage
+
+On a critical hit you may redirect the effects to an enemy within 3#hex. On an ordinary hit you may roll to hit again.
+
+=== Gravity Well
+
+3 Heat. Chose a visible point within 5#hex. All units in a 2#hex radius are pulled 1#hex to the center. Gain 1 Heat per unit moved.
+
+=== Lockstep Sync
+
+When another Mech fires its Overwatch you may fire too. Applies to both friendly and enemy Mechs.
+
+=== Sensor Bait
+
+Advantage against Mechs that targeted this Mech last turn.
+
+=== Reactive Mesh
+
+Every time you would take knock-back ignore it and gain 1 Heat and an advantage to your next roll instead.
+
+=== Loud Comms
+
+2 Heat. Allied Mechs within 3#hex gain Advantage on all their attacks. Allied Mechs outside gain Disadvantage on all their attacks.
+
+=== Turret
+1 Heat. Use once. One action. Spawn a 3HP/3H/0M/0S turret with 2 Actions per turn on an adjacent #hex. Activates separately.
+
+=== Repair Kit
+1 Heat. Use once. Target the activating Mech or a Mech visible to sensors. Recover 2HP.
+
+=== Plasma Wall
+1 Heat. Use once. Place 2x1 immobile wall within Mech's sensor distance. Disappears when the Mech loses sensor visibility of it or when hit once.
+
+=== Deployable Drone
+1 Heat. Roll. On a success place a small drone on an adjacent #hex. It activates with this Mech. Considered to be 2HP/4H/4M/0S with a Cannon. Activates on the same turn as the creator Mech and uses its actions. Destroyed when overheating. A Mech may only have (HP / 2 - 1) drones at a time.
+
+=== Decoy
+2 Heat. Use once. Place a decoy within Mech's line of
+sight. When an enemy can see both the Mech and the Decoy it
+may only attack the decoy. Destroyed when hit once.
+
+=== Lock In
+2 Heat. Chose an enemy Mech visible to the sensors. All attacks against them from allied Mechs gain Advantage until your next turn.
+
+=== Blink Engine
+2 Heat. Teleport 3#hex in any direction through any obstacles. Does not count as movement.
+
+=== Overcharged Lance
+5 Heat. Once per turn. Fire a beam of up to 12#hex dealing 2 Damage. Ignore cover.
+
+=== Thermal Bloom
+2 Heat. Choose a spot within 6#hex. All mechs within 3#hex gain 1 heat. Add 2 more heat if they end their turn in that area. 
+
+=== Collapse Mode
+
+If you critically hit an enemy they can not enter Overwatch on the next turn.
+
+== Mods
+
+Sometimes you want to give your Mech a little more _zing_. Only
+one Mod can be installed at a time. Make them count.
+
+=== Adaptive Logic Core
+
+
+=== Overload Sigil
+
+=== Motor Furnace
+
+Once per turn, when getting 1 Heat convert it into 1#hex of free movement.
+
+=== Reactive Overdrive
+
+If you end your turn above #half your heat capacity gain 1#hex of free movement and immediately vent 1 Heat.
+
+=== Gratitude Circuit
+
+When landing a critical heat immediately vent 1 Heat.
+
+== Taking Turns
+
+Each Mech has 3 actions on its turn. An action can be spent...
+
+- Firing a weapon.
+- Smashing something in close combat.
+- Moving around.
+- Activating specials.
+- Venting some heat to cool down.
+
+Actions can also be spent out of turn on activating passive reactive specials.
+
+== Rolling
+
+When asked to roll dice tally your boons and banes.
+
+Ok, I will write this out properly later. In general the formula is...
+
+$#text()[Dice Amount] = 1 + |#text()[Advantage] - #text()[Disadvantage]|$
+
+If more advantage than disadvantage pick the highest, otherwise pick the lowest. That's your result.
+
+1 and 2 are failures. 3, 4 and 5 are successes. 6 is a _critical_ success. On a critical success something extra might happen.
+
+== Line of Sight
+
+When a direct line can be drawn from your Mech's #hex to another #hex the Mech is considered to have _line of sight_ to it or simply _see_ it.  
+
+If a direct line of sight can be drawn from the Mech or any of the Mech's deployable, it is considered to _sense_ it or have it _within sensor distance_.
+
+== Firing
+
+Chose a weapon. Each weapon may only fire once per turn.
+
+Pick a space in your line of sight, doesn't have to be occupied by anything.
+
+Roll to hit. On a success deal the described damage and apply any effects.
+
+== Venting
+
+Remove 1 Heat.
+
+== Ending a Turn
+
+When a Mech has exhausted all its actions or the player voluntarily decides to it may end its turn. When ending a turn it may _Vent_ or go into _Overwatch_.
+
+*Venting* halves the Mech's current heat.
+
+Going into *Overwatch* puts the Mech in "high-alert" mode. If any enemy enters its cone of vision it may perform a reaction shot. Fire like the Mech would on its turn and subtract one action from its next turn.
 
 #pagebreak()
 
-#outline(depth: 3)
+#align(center + horizon)[This page intentionally left blank.]
+
+#pagebreak()
+
+#align(center)[#text(size: 24pt)[*Zedmech: Designer's Codex*]]
+
+
+1. *No Redundancy.* Avoid functional overlap unless it introduces a new synergy or cost. Variants of the same thing must interact with different abilities similarly.
+2. *Multiplicative Complexity.* Every ability should feed into an existing system, not into another specific ability. Every ability should feel like it works well with something else. No ability should bypass systems.
+3. *Heat = Power + Risk*. Abilities that cost _heat_ should be risky, but more powerful. Being dangerous should be encouraged.
+4. *Space is Valuable*. Abilities should care about distances, obstacles, adjacency and so on. Avoid global effects.
+5. *Thematic Clarity*. Vortices should pull and distort, cannons should shoot, fire must burn and heat things up. The ability's name and flavoring should somewhat aligned and intuitive, not opaque.
+6. *Prefer Input Randomness*. Favor random outcomes that are opt-in. Risky skills should be optional, but encouraged and rewarded.
+7. *Pink Noise*. Small random outcomes should be more likely than large ones. Big events must be unexpected.
+8. *5 Seconds per Skill.* Every feature should be explainable in 5 seconds. Cut it out or rewrite it otherwise.
