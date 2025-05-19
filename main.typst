@@ -2,8 +2,8 @@
 #set document(author: "Artur Roos", title: "Zedmech")
 #set text(font: "Exo 2", size: 12pt)
 
-#let cheatsheet = true
-#let verbose-math = true
+#let cheatsheet = false
+#let verbose-math = false
 
 #let secret(body) = if cheatsheet [
   #text(font: "New Computer Modern")[#body]] else []
