@@ -1,0 +1,86 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Restore Typst from cache
+        id: cache-typst
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/typst-bin
+          key: typst-bin-${{ runner.os }}-v1
+
+      - name: Set up dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl unzip
+
+      - name: Install Typst
+        if: steps.cache-typst.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/.cache/typst-bin
+          curl -L https://github.com/typst/typst/releases/latest/download/typst-x86_64-unknown-linux-musl.tar.xz -o typst.tar.xz
+          tar -xf typst.tar.xz -C ~/.cache/typst-bin --strip-components=1
+
+      - name: Add Typst to PATH
+        run: echo "$HOME/.cache/typst-bin" >> $GITHUB_PATH
+
+      - name: Compile Typst to PDF
+        run: typst compile main.typst main.pdf
+
+      - name: Prepare output directory
+        run: |
+          mkdir output
+          cp index.html output/
+          cp main.pdf output/
+          echo "zedmech.ktnlvr.dev" > output/CNAME
+
+      - name: Upload output as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: site-files
+          path: output/
+
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy-pages.outputs.page_url }}
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: site-files
+          path: output
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload to GitHub Pages
+        id: deploy-pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: output
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
