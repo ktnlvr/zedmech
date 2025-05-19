@@ -49,13 +49,18 @@ jobs:
         run: echo "$HOME/.cache/typst-bin" >> $GITHUB_PATH
 
       - name: Compile Typst to PDF
-        run: typst compile main.typst rules.pdf
+        run: |
+          typst compile main.typ rules.pdf
+          sed 's/#let cheatsheet = false/#let cheatsheet = true/' "main.typ" > "main-cheatsheet.typ"
+          typst compile main-cheatsheet.typ rules-cheatsheet.pdf
+          sed 's/#let verbose-math = false/#let verbose-math = true/' "main-cheatsheet.typ" > "main-verbose.typ"
+          typst compile main-verbose.typ rules-cheatsheet-verbose.pdf
 
       - name: Prepare output directory
         run: |
           mkdir output
           cp index.html output/
-          cp rules.pdf output/
+          cp rules.pdf rules-cheatsheet.pdf rules-cheatsheet-verbose.pdf output/
           echo "zedmech.ktnlvr.dev" > output/CNAME
 
       - name: Upload output as artifact
