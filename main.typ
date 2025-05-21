@@ -27,7 +27,7 @@ Every mech starts with...
 
 - 8 Hull Points (HP)
 - 8 Heat Capacity (H)
-- 4 Movement (M), measured in #hex
+- 3 Movement (M), measured in #hex
 - 3 Slots (S)
 - 1 Mod
 
@@ -35,11 +35,11 @@ You can buy/sell 2HP for 1 Movement and 1 Slot.
 
 == Weapons
 
-- *CANNON*. 1 Slot, 12#hex, 2 Heat, 2 Damage, Knock-back.
-- *CRYO*. 1 Slot, 12#hex, 1 Heat, 1 Damage. Decrease enemy movement by 1 for 1 turn.
-- *HEAVY*. 2 Slots, 14#hex, 2 Heat, 3 Damage, 2 Knock-back. Takes an action to reload.
-- *ROCKET*. 1 Slot, 8#hex. 2 Heat, 1 Damage. Blast radius 1#hex.
-- *LASER*. 1 Slot, 18#hex. 2 Heat, 1 Damage. Pierces on success, roll for the next enemy in line. Ignore cover.
+- *CANNON*. 1 Slot, 8#hex, 2 Heat, 2 Damage, Knock-back.
+- *CRYO*. 1 Slot, 8#hex, 1 Heat, 1 Damage. Decrease enemy movement by 1 for 1 turn.
+- *HEAVY*. 2 Slots, 9#hex, 2 Heat, 3 Damage, 2 Knock-back. Takes an action to reload.
+- *ROCKET*. 1 Slot, 6#hex. 2 Heat, 1 Damage. Blast radius 1#hex.
+- *LASER*. 1 Slot, 1  8#hex. 2 Heat, 1 Damage. Pierces on crits, roll for the next enemy in line. Ignore cover.
 - *FLAMETHROWER*. 1 Slot, 4#hex, 1 Heat. Fires in a cone. Targets gain +3 Heat. +1 more Heat on a crit.
 
 == Specials
@@ -92,7 +92,7 @@ Gain +1 to hit every time you critically hit. Resets on a miss.
 === Assault Weapon
 On a critical hit you may try to fire again at a different target. Can not be repeated more than once per turn.
 
-=== Echo Chamber
+=== Active Chamber
 On a miss once per turn you may spend the same price in Heat to shoot from the same gun at another target.
 
 === Homing Shots
@@ -152,12 +152,11 @@ Gain 1 free movement on the next turn after getting knocked back.
 If you are not ending movement in difficult terrain you may ignore all effects, but gain 1 Heat per movement.
 
 === Echo Barrage
-
 On a critical hit you may redirect the effects to an enemy within 3#hex. On an ordinary hit you may roll to hit again.
 
 === Gravity Well
 
-3 Heat. Chose a visible point within 5#hex. All units in a 2#hex radius are pulled 1#hex to the center. Gain 1 Heat per unit moved.
+2 Heat. Chose a visible point within 5#hex. All units in a 2#hex radius are pulled 2#hex to the center. Gain 1 Heat per unit moved.
 
 === Lockstep Sync
 
@@ -182,10 +181,10 @@ Every time you would take knock-back ignore it and gain 1 Heat and an advantage 
 1 Heat. Use once. Target the activating Mech or a Mech visible to sensors. Recover 2HP.
 
 === Plasma Wall
-1 Heat. Use once. Place 2x1 immobile wall within Mech's sensor distance. Disappears when the Mech loses sensor visibility of it or when hit once.
+1 Heat. Only one wall of the same Mech may exist at a time. Place 2x1 immobile wall within Mech's sensor distance. Disappears when the Mech loses sensor visibility of it or when hit once.
 
 === Deployable Drone
-1 Heat. Roll. On a success place a small drone on an adjacent #hex. It activates with this Mech. Considered to be 2HP/4H/4M/0S with a Cannon. Activates on the same turn as the creator Mech and uses its actions. Destroyed when overheating. A Mech may only have (HP / 2 - 1) drones at a time.
+1 Heat. Roll. On a success place a small drone on an adjacent #hex. It activates with this Mech. Considered to be 2HP/4H/4M/0S with a Cannon. Activates on the same turn as the creator Mech and uses its actions, but all the drones activate at once. Destroyed when overheating. A Mech may only have (HP / 2 - 1) drones at a time.
 
 === Decoy
 2 Heat. Use once. Place a decoy within Mech's line of
@@ -289,7 +288,7 @@ $#text()[Dice Amount] = 1 + |#text()[Advantage] - #text()[Disadvantage]|$
 
 If more advantage than disadvantage pick the highest, otherwise pick the lowest. That's your result.
 
-1 and 2 are failures. 3, 4 and 5 are successes. 6 is a _critical_ success. On a critical success something extra might happen.
+1, 2 and 3 are failures. 4 and 5 are successes. 6 is a _critical_ success. On a critical success something extra might happen.
 
 === Line of Sight
 
@@ -321,7 +320,7 @@ You may move up to your Mech's Movement in #hex. Going up one elevation level co
 
 == Venting
 
-Remove 1 Heat.
+Remove 2 Heat.
 
 == Ending a Turn
 
@@ -329,7 +328,7 @@ When a Mech has exhausted all its actions or the player voluntarily decides to i
 
 *Venting* halves the Mech's current heat.
 
-Going into *Overwatch* puts the Mech in "high-alert" mode. If any enemy enters its cone of vision it may perform a reaction shot. Fire like the Mech would on its turn and subtract one action from its next turn.
+Going into *Overwatch* puts the Mech in "high-alert" mode. If any enemy enters its firing range within its line of sight vision it may perform a reaction shot. Fire like the Mech would on its turn and subtract one action from its next turn. You use your Overwatch shot only once.
 
 == Overheating
 
@@ -361,6 +360,8 @@ If the attacker and target are adjacent the attacker does not gain cover.
 Mechs on high ground gets Advantage against all Mechs lower than them. 
 
 Mechs on low ground gets Disadvantage against all Mechs higher than them.
+
+A Mech on a higher elevation can see the Mechs in the lower elevation only if they are on the edge of that respective elevation.
 
 #pagebreak()
 
