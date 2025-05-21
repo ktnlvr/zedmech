@@ -181,7 +181,7 @@ Every time you would take knock-back ignore it and gain 1 Heat and an advantage 
 1 Heat. Use once. Target the activating Mech or a Mech visible to sensors. Recover 2HP.
 
 === Plasma Wall
-1 Heat. Only one wall of the same Mech may exist at a time. Place 2x1 immobile wall within Mech's sensor distance. Disappears when the Mech loses sensor visibility of it or when hit once.
+1 Heat. Only one wall of the same Mech may exist at a time. Place 2x1 immobile wall within 6#hex sensor distance. Disappears when the Mech loses sensor visibility of it or when hit once.
 
 === Deployable Drone
 1 Heat. Roll. On a success place a small drone on an adjacent #hex. It activates with this Mech. Considered to be 2HP/4H/4M/0S with a Cannon. Activates on the same turn as the creator Mech and uses its actions, but all the drones activate at once. Destroyed when overheating. A Mech may only have (HP / 2 - 1) drones at a time.
