@@ -39,7 +39,7 @@ You can buy/sell 2HP for 1 Movement and 1 Slot.
 - *CRYO*. 1 Slot, 8#hex, 1 Heat, 1 Damage. Decrease enemy movement by 1 for 1 turn.
 - *HEAVY*. 2 Slots, 9#hex, 2 Heat, 3 Damage, 2 Knock-back. Takes an action to reload.
 - *ROCKET*. 1 Slot, 6#hex. 2 Heat, 1 Damage. Blast radius 1#hex.
-- *LASER*. 1 Slot, 1  8#hex. 2 Heat, 1 Damage. Pierces on crits, roll for the next enemy in line. Ignore cover.
+- *LASER*. 1 Slot, 18#hex. 2 Heat, 1 Damage. Pierces on crits, roll for the next enemy in line. Ignore cover.
 - *FLAMETHROWER*. 1 Slot, 4#hex, 1 Heat. Fires in a cone. Targets gain +3 Heat. +1 more Heat on a crit.
 
 == Specials
