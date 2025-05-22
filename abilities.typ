@@ -5,6 +5,9 @@
 
 #let hex = sym.hexa.stroked
 
+#let half = str.from-unicode(0xBD)
+#let thirds = str.from-unicode(0x2154)
+
 // Activation: Once per turn, action, reactionary, passive
 // Cost: AP, Heat
 
@@ -46,7 +49,7 @@
 
 #for special in abilities.specials {
   let raw = special.at("body")
-  let s = eval(raw, mode: "markup", scope: (hex: hex))
+  let s = eval(raw, mode: "markup", scope: (hex: hex, half: half, thirds: thirds))
   
   card(special.at("name"), special.at("activation"), s, tags: ("special",))
 }

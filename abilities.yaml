@@ -1,4 +1,198 @@
 specials:
+- name: Assault Weapon
+  activation: reaction
+  body: |
+    On a critical hit you may try to fire again at a different target. 
+    
+    _Once per turn._
+
+- name: Active Chamber
+  activation: reaction
+  body: |
+    On a miss you may spend the same price in Heat to shoot from the same gun at another target.
+
+    _Once per turn._
+
+- name: Homing Shots
+  activation: action
+  body: |
+    Fire at a target within half-range. Ignore Advantage and Disadvantage.
+
+    _1 Heat._
+
+- name: Heat Sinks
+  activation: passive
+  body: |
+    Add 2 extra heat capacity.
+
+- name: Shield
+  activation: reaction
+  body: |
+    Reduce incoming damage by 1, but not lower than 1.
+
+    Ignored on crits.
+
+- name: Molten Core
+  activation: passive
+  body: |
+    When heat is above #half gain Advantage on firing.
+
+- name: Stabilized
+  activation: passive
+  body: |
+    When knocked back you may decide to be knocked back diagonally.
+
+    Choose direction.
+
+- name: Leap Springs
+  activation: passive
+  body: |
+    Ignore 2#hex obstacles or difficult terrain per Movement action.
+    
+    You may not end a movement in an obstacle.
+
+- name: Nitro
+  activation: passive
+  body: |
+    Move extra 2#hex per movement.
+  
+- name: Beacon
+  activation: passive
+  body: |
+    Mechs don't have cover to you or your drones if you or any of the drones see it without cover.
+
+- name: Gauss Hook
+  activation: passive
+  body: |
+    Instead of knocking an enemy back pull them towards you.
+
+    Knock-back rules apply as if the target is knocked-back from the opposite direction.
+
+- name: Cloak
+  activation: passive
+  body: |
+    Attackers gain Disadvantage on ranged attacks against this Mech if it did not move during this and previous rounds.
+
+- name: Recoil Inverter
+  activation: reaction
+  body: |
+    After knocking back an enemy you may move 1#hex in the opposite direction.
+
+- name: Thrusters
+  activation: passive
+  body: |
+    After moving 3#hex or more gain Advantage to hit in close combat.
+    
+    Does not stack.
+
+- name: Hunter Mode
+  activation: reaction
+  body: |
+    After destroying a Mech regain 1 HP, vent all heat and optionally immediately move 2 #hex.
+
+- name: Kinetic Converter
+  activation: passive
+  body: |
+    Gain 1#hex free movement immediately after getting knocked-back. 
+
+- name: Shadow Step
+  activation: reaction
+  body: |
+    Avoid triggering a Overwatch if the Mech only moved.
+
+    Trigger all Overwatch reactions avoided this turn when Firing or Brawling.
+
+- name: Pathfinder Override
+  activation: passive
+  body: |
+    If you are not ending movement in difficult terrain you may ignore all effects.
+    Gain 1 Heat per #hex moved through difficult terrain.
+
+- name: Echo Barrage
+  activation: passive
+  body: |
+    On a critical hit you may redirect the effects to an enemy within 3#hex.
+    
+    On an ordinary hit you may roll to hit again.
+
+- name: Gravity Well
+  activation: action
+  body: |
+    Chose a visible point within 5#hex. All units in a 2#hex radius are pulled 2#hex to the center.
+
+    _2 Heat._
+
+    Gain 1 Heat per unit moved.
+
+- name: Lockstep Sync
+  activation: reaction
+  body: |
+    When another Mech fires its Overwatch you may fire too.
+
+    Do not activate any firing-relevant abilities.
+
+    Applies after all the effects of the first shot were resolved.
+
+- name: Sensor Bait
+  activation: passive
+  body: |
+    Advantage against Mechs that targeted this Mech last or this round.
+
+- name: Reactive Mesh
+  activation: reaction
+  body: |
+    Convert Damage into Heat and Advantage against the offending Mech.
+
+    _Once per turn_.
+
+- name: Combat Drone
+  activation: action
+  body: |
+    Place a small drone on an adjacent #hex. It is considered levitating.
+
+    Considered to be 2HP/4H/4M/0S with a Cannon.
+
+    _1 Heat._
+
+- name: Decoy
+  activation: action
+  body: |
+    Place a Decoy within Mech's line of sight.
+
+    When an enemy can see both the Mech and the Decoy it must attack the Decoy.
+
+    Destroyed when hit once.
+
+    _2 Heat. Use once._
+
+- name: Target Lock
+  activation: action
+  body: |
+    Chose an enemy Mech visible to the sensors.
+    All attacks against them from allied Mechs gain Advantage until your next turn.
+
+    _2 Heat._
+
+- name: Blink Engine
+  activation: action
+  body: |
+    Teleport 3#hex in any direction through any obstacles.
+
+    Does not count as movement.Does not trigger Overwatch.
+
+    _2 Heat._
+
+- name: Thermal Bloom
+  activation: action
+  body: |
+    Choose a spot within 6#hex.
+    
+    All mechs within 3#hex gain 1 heat. Add 2 more heat if they end their turn in that area.
+
+    The effects do not apply to the activating Mech.
+
+    _2 Heat._
+
 - name: Plasma Wall
   activation: action
   body: |
@@ -9,3 +203,19 @@ specials:
     Disappears when the Mech loses sensor visibility of it or when targeted once, no need to roll.
 
     Only one wall of the same Mech may exist at a time.
+
+- name: Fire!
+  activation: action
+  body: |
+    Mech fires 2 or more weapons.
+
+    All weapons may be fired again this turn.
+
+- name: Optical Flare
+  activation: action
+  body: |
+    Choose 2#hex blast radius within 7#hex.
+    Enemies in that area suffer Disadvantage on all attacks until your next turn.
+
+    No line of sight requirement.
+    _2 Heat._
