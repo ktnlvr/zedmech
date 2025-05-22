@@ -1,0 +1,11 @@
+specials:
+- name: Plasma Wall
+  activation: action
+  body: |
+    Place 2x1 immobile wall within 6#hex sensor distance.
+
+    _Once per turn. 1 Heat._
+
+    Disappears when the Mech loses sensor visibility of it or when targeted once, no need to roll.
+
+    Only one wall of the same Mech may exist at a time.

@@ -50,6 +50,7 @@ jobs:
 
       - name: Compile Typst to PDF
         run: |
+          typst compile abilities.typ abilities.pdf
           typst compile main.typ rules.pdf
           sed 's/#let cheatsheet = false/#let cheatsheet = true/' "main.typ" > "main-cheatsheet.typ"
           typst compile main-cheatsheet.typ rules-cheatsheet.pdf
@@ -60,7 +61,7 @@ jobs:
         run: |
           mkdir output
           cp index.html output/
-          cp rules.pdf rules-cheatsheet.pdf rules-cheatsheet-verbose.pdf output/
+          cp rules.pdf rules-cheatsheet.pdf rules-cheatsheet-verbose.pdf abilities.pdf output/
           echo "zedmech.ktnlvr.dev" > output/CNAME
 
       - name: Upload output as artifact
