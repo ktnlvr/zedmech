@@ -268,7 +268,6 @@ specials:
     
     _2 Heat._
 
-
 - name: Blade Anchor
   tags: [ignore, melee, knockback, elevation]
   counters:
@@ -294,6 +293,45 @@ specials:
     When dealing knock-back you may transfer all or some of it to Mechs adjacent to the target Mech. 
 
     Transfer targets receive 1#hex of additional knock-back.
+
+- name: Achronistic
+  activation: passive
+  tags: [turn-economy]
+  body: |
+    This Mech may activate out of order.
+
+- name: Overlock Gauge
+  activation: passive
+  tags: [overheating, heat, stats]
+  body: |
+    Double this Mechs heat capacity.
+
+    Always DETONATES when Overheated.
+
+- name: Distributed Mind
+  activation: passive
+  tags: [turn-economy]
+  body: |
+    During its turn another Mech may force this Mech to execute any action.
+
+    _Once per activation of the other Mech._
+
+- name: Ichor Fuel
+  activation: passive
+  tags: [blast, drones]
+  body: |
+    Drones detonate with blast radius 2#hex dealing 2 Damage when destroyed. 
+
+- name: Phantom Relay
+  activation: action
+  tags: [necromancy, stats]
+  body: |  
+    Reduce maximum HP by 2.
+    At the start chose an allied Mech. This Mech and the activator are now _bound_. 
+
+    Neither Mech is destroyed if it reaches 0. If both reach zero both are destroyed.
+    
+    May still Overheat. If one detonates, the other does too.
 
 mods:
 - name: Adaptive Logic 
@@ -365,3 +403,15 @@ mods:
     _3 Heat._
     
     If the target rolls DETONATION nothing happens.
+
+- name: Cascading Suspense
+  activation: action
+  body: |
+    This Mech gains 1 extra action on its next turn.
+
+- name: Necrotech
+  activation: passive
+  body: |
+    When an allied Mech was destroyed this Mech may activate instead of it.
+
+    If this Mod is applied to multiple Mechs all of them may activate.
