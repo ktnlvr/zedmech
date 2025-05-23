@@ -29,7 +29,7 @@
   #stack(
     dir: ttb,
     box(width: 100%, height: 15%, fill: activation-colors.at(activation))[
-      #align(center + horizon)[#text(size: 16pt)[*#name*]]
+      #align(center + horizon)[== #text(size: 16pt)[#name]]
     ],
     box(width: 100%, height: 75%)[
       #pad(rest: 7.5%)[#body]
