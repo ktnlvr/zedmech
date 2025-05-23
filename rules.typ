@@ -2,17 +2,6 @@
 #set document(author: "Artur Roos", title: "Zedmech")
 #set text(font: "Exo 2", size: 12pt)
 
-#let cheatsheet = false
-#let verbose-math = false
-#let design-comments = true
-
-#let secret(body) = if cheatsheet [
-  #text(font: "New Computer Modern")[#body]] else []
-
-#let verbose(body) = if verbose-math [#secret(body)] else []
-
-#let design(body) = align(right)[#block(width: 85%)[#text(style: "italic")[#align(right)[#body]] ]]
-
 // Feedback
 // - no melee abilities basically
 // - make something to get extra actions
@@ -88,101 +77,11 @@ Each ability has a Manufacturer behind it. It roughly defines the type of abilit
 
 Takes 1 slot. Activating requires 1 action. If reactive, takes 1 action from the next turn.
 
-=== Escalation
-Gain +1 to hit every time you critically hit. Resets on a miss.
-
-#secret[
-  $t = #text[Turn Number]$
-
-  
-  $b_t = #text[Bonus Damage at turn] t$
-  
-  $E(b_t) = #text[Expected Bonus Damage on turn] t$
-
-  $E[B_t] = #text[Expected Bonus Damage _accumulated_ by turn] t$
-
-  $E[B_t] = sum_i E[b_i] $ by linearity
-
-  $ b_0 = 0, E[b_0] = 0 $
-  
-  1. With $P = 1/6$ crits: $b_t = b_(t-1) + 4$ 
-  2. With $P = 3/6$ hit, so: $b_t = b_(t-1)$
-  3. With $P = 2/6$ misses: $b_t = 0$
-
-  $ E[b_t] &= 2/6 dot 0 + 4/6 (E[b_(t-1)] + 1/6 dot 1)\
-          &= 4/6 E[b_(t - 1)] + 4/36\
-          &= 2/3 E[b_(t - 1)] + 1/9 $
-          
-  $ therefore $
-
-  //$r = lim_(t arrow infinity) (E[b_t]) / (E[b_(t - 1)]) = 3/2$
-
-  $ Delta E[b_t] &= E[b_(t + 1)] - E[b_(t)]\
-            &= 2/3 E[b_(t)] + 1/9 - E[b_t]
-            &= 1/9 -1/3E[b_t] $
-
-  $ Delta E[b_t] + 1/3 E[b_t] = 1/9 $
-
-  #verbose[
-    $ e^(integral 1/3 d t)  &= e^(t/3) \ 
-      e^(t/3) E[b_t]
-    
-    $
-  ]
-]
-
 
 == Mods
 
 Sometimes you want to give your Mech a little more _zing_. Only
 one Mod can be installed at a time. Make them count.
-
-//=== Molten Core
-
-//=== Shadow Step
-
-=== Nanites
-
-Must have at least 2 deployables. Once per turn. Destroy all deployables and vent the equivalent in Heat.
-
-=== Overload Sigil
-
-Once per game. Immediately DETONATE when overheated. Don't receive damage. Vent all remaining.
-
-=== Motor Furnace
-
-Once per turn, when getting 1 Heat convert it into 1#hex of free movement.
-
-//=== Blazing Matrix
-
-=== Supression Protocol
-
-The target takes 1 Damage for every layer of elevation they lose due to knock-back from your attack.
-
-=== Hexdense Plating
-
-Once per turn convert incoming damage into heat and take knock-back equal to damage.
-
-=== Reactive Overdrive
-
-If you end your turn above #half your heat capacity gain 1#hex of free movement and immediately vent 1 Heat.
-
-=== Gratitude Circuit
-
-When landing a critical heat immediately vent 1 Heat.
-
-=== Havoc Driver
-After destroying a Mech immediately fire a weapon.
-
-=== Quantum Double
-#design[Would be a bit too powerful if it was free. Too powerful even for a Mod.]
-
-You may fire a weapon twice in a row. If either shot fails take 1 Damage and 1 Heat.
-
-=== Magnetic Resonance.
-3 Heat. Force a target in line of sight to roll on the
-Overheat table for any effect except DETONATION.
-If the target rolls DETONATION nothing happens.
 
 == Taking Turns
 
