@@ -91,6 +91,46 @@ Takes 1 slot. Activating requires 1 action. If reactive, takes 1 action from the
 === Escalation
 Gain +1 to hit every time you critically hit. Resets on a miss.
 
+#secret[
+  $t = #text[Turn Number]$
+
+  
+  $b_t = #text[Bonus Damage at turn] t$
+  
+  $E(b_t) = #text[Expected Bonus Damage on turn] t$
+
+  $E[B_t] = #text[Expected Bonus Damage _accumulated_ by turn] t$
+
+  $E[B_t] = sum_i E[b_i] $ by linearity
+
+  $ b_0 = 0, E[b_0] = 0 $
+  
+  1. With $P = 1/6$ crits: $b_t = b_(t-1) + 4$ 
+  2. With $P = 3/6$ hit, so: $b_t = b_(t-1)$
+  3. With $P = 2/6$ misses: $b_t = 0$
+
+  $ E[b_t] &= 2/6 dot 0 + 4/6 (E[b_(t-1)] + 1/6 dot 1)\
+          &= 4/6 E[b_(t - 1)] + 4/36\
+          &= 2/3 E[b_(t - 1)] + 1/9 $
+          
+  $ therefore $
+
+  //$r = lim_(t arrow infinity) (E[b_t]) / (E[b_(t - 1)]) = 3/2$
+
+  $ Delta E[b_t] &= E[b_(t + 1)] - E[b_(t)]\
+            &= 2/3 E[b_(t)] + 1/9 - E[b_t]
+            &= 1/9 -1/3E[b_t] $
+
+  $ Delta E[b_t] + 1/3 E[b_t] = 1/9 $
+
+  #verbose[
+    $ e^(integral 1/3 d t)  &= e^(t/3) \ 
+      e^(t/3) E[b_t]
+    
+    $
+  ]
+]
+
 
 == Mods
 
@@ -99,9 +139,50 @@ one Mod can be installed at a time. Make them count.
 
 //=== Molten Core
 
+//=== Shadow Step
+
+=== Nanites
+
+Must have at least 2 deployables. Once per turn. Destroy all deployables and vent the equivalent in Heat.
+
+=== Overload Sigil
+
+Once per game. Immediately DETONATE when overheated. Don't receive damage. Vent all remaining.
+
+=== Motor Furnace
+
+Once per turn, when getting 1 Heat convert it into 1#hex of free movement.
+
 //=== Blazing Matrix
 
-//=== Havoc Driver
+=== Supression Protocol
+
+The target takes 1 Damage for every layer of elevation they lose due to knock-back from your attack.
+
+=== Hexdense Plating
+
+Once per turn convert incoming damage into heat and take knock-back equal to damage.
+
+=== Reactive Overdrive
+
+If you end your turn above #half your heat capacity gain 1#hex of free movement and immediately vent 1 Heat.
+
+=== Gratitude Circuit
+
+When landing a critical heat immediately vent 1 Heat.
+
+=== Havoc Driver
+After destroying a Mech immediately fire a weapon.
+
+=== Quantum Double
+#design[Would be a bit too powerful if it was free. Too powerful even for a Mod.]
+
+You may fire a weapon twice in a row. If either shot fails take 1 Damage and 1 Heat.
+
+=== Magnetic Resonance.
+3 Heat. Force a target in line of sight to roll on the
+Overheat table for any effect except DETONATION.
+If the target rolls DETONATION nothing happens.
 
 == Taking Turns
 
@@ -206,21 +287,3 @@ If a Mech on a lower elevation stands on the higher elevation it can see it enti
 == Credits
 
 Thanks to Unai, Kartik, Shannon and Noah for play-testing and contributing ideas.
-
-#pagebreak()
-
-#align(center + horizon)[This page intentionally left blank.]
-
-#pagebreak()
-
-#align(center)[#text(size: 24pt)[*Zedmech: Designer's Codex*]]
-
-
-1. *No Redundancy.* Avoid functional overlap unless it introduces a new synergy or cost. Variants of the same thing must interact with different abilities similarly.
-2. *Multiplicative Complexity.* Every ability should feed into an existing system, not into another specific ability. Every ability should feel like it works well with something else. No ability should bypass systems.
-3. *Heat = Power + Risk*. Abilities that cost _heat_ should be risky, but more powerful. Being dangerous should be encouraged.
-4. *Space is Valuable*. Abilities should care about distances, obstacles, adjacency and so on. Avoid global effects.
-5. *Thematic Clarity*. Vortices should pull and distort, cannons should shoot, fire must burn and heat things up. The ability's name and flavoring should somewhat aligned and intuitive, not opaque.
-6. *Prefer Input Randomness*. Favor random outcomes that are opt-in. Risky skills should be optional, but encouraged and rewarded.
-7. *Pink Noise*. Small random outcomes should be more likely than large ones. Big events must be unexpected.
-8. *5 Seconds per Skill.* Every feature should be explainable in 5 seconds. Cut it out or rewrite it otherwise.
