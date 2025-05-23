@@ -333,6 +333,23 @@ specials:
     
     May still Overheat. If one detonates, the other does too.
 
+- name: Hunter's Mark
+  activation: passive
+  body: |
+    After missing a shot a mark the targeted Mech.
+
+    Any attacks against the targeted Mech gain Advantage. 
+    
+    If some Mech is already marked, transfer the mark.
+
+    Remove the mark when the Mech is hit.
+
+- name: Hover
+  activation: passive
+  tags: [movement]
+  body: |
+    Do not spend extra #hex when going up elevation.
+    
 mods:
 - name: Adaptive Logic 
   activation: passive
@@ -415,3 +432,45 @@ mods:
     When an allied Mech was destroyed this Mech may activate instead of it.
 
     If this Mod is applied to multiple Mechs all of them may activate.
+
+- name: Cable
+  activation: action
+  tags: [knockback]
+  body: |
+    Pick a Mech within 5#hex in Line of Sight. Roll. On a success the activating Mechs get immediately pulled to it without triggering Overwatch.
+
+- name: Repair Station
+  activation: action
+  tags: [necromancy]
+  body: |
+    Resurrect a Mech carcass on an adjacent #hex. It is now on your side.
+
+- name: Sentinel
+  activation: passive
+  body: |
+    Gain Automatic advantage on all rolls made for reactions (e.g. Overwatch).
+
+- name: Hive Queen
+  activation: free
+  tags: [turn-economy, drones]
+  body: |
+    Pick a drone. It perform any action.
+
+    _Once per turn._
+
+- name: Kinematic Catalyst
+  activation: passive
+  body: |
+    Any guns can be fired again after performing a Movement.
+    
+- name: Redundant
+  activation: passive
+  tags: [turn-economy, support]
+  body: |
+    Allied Mechs within line of sight can use this Mech's future actions as their own.
+
+- name: Phase Shift
+  activation: reaction
+  tags: [teleport]
+  body: |
+    After taking damage the Mech may teleport within 3#hex. Does not provoke Vverwatch.
