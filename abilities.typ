@@ -19,10 +19,10 @@
 )
 
 #let activation-colors = (
-  "passive": rgb("#4b80ca"),
-  "reaction": rgb("#efac28"),
-  "action": rgb("#ef3a0c"),
-  "free": rgb("#3c9f9c")
+  "passive": rgb("#3E83D1"),
+  "reaction": rgb("#FFAA14"),
+  "action": rgb("#DD3745"),
+  "free": rgb("#22896E")
 )
 
 #let card(name, color, heat-cost: 0, is-mod: false, tags: (), body) = [
@@ -52,7 +52,7 @@
   let s = eval(raw, mode: "markup", scope: (hex: hex, half: half, thirds: thirds))
   let n = upper(weapon.at("name"))
   
-  card(n, rgb("#927e6a"), s, tags: ("weapon",))
+  card(n, rgb("#6b5d5a"), s, tags: ("weapon",))
 }
 
 #for special in abilities.specials {
