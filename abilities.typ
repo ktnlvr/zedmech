@@ -25,11 +25,11 @@
   "free": rgb("#3c9f9c")
 )
 
-#let card(name, activation, heat-cost: 0, tags: (), body) = [
+#let card(name, activation, heat-cost: 0, is-mod: false, tags: (), body) = [
   #stack(
     dir: ttb,
     box(width: 100%, height: 15%, fill: activation-colors.at(activation))[
-      #align(center + horizon)[== #text(size: 16pt)[#name]]
+      #align(center + horizon)[== #text(size: 16pt, fill: white)[#name]]
     ],
     box(width: 100%, height: 75%)[
       #pad(rest: 7.5%)[#body]
@@ -41,7 +41,6 @@
           #text(size: 14pt, fill: gray)[\##tag]
         ]
       })
-        
     ]
   )
   #pagebreak()
@@ -52,8 +51,9 @@
 #for special in abilities.specials {
   let raw = special.at("body")
   let s = eval(raw, mode: "markup", scope: (hex: hex, half: half, thirds: thirds))
+  let n = upper(special.at("name"))
   
-  card(special.at("name"), special.at("activation"), s, tags: ("special",))
+  card(n, special.at("activation"), s, tags: ("special",))
 }
 
 #for mod in abilities.mods {
@@ -61,5 +61,5 @@
   let s = eval(raw, mode: "markup", scope: (hex: hex, half: half, thirds: thirds))
   let n = upper(mod.at("name"))
   
-  card(n, mod.at("activation"), s, tags: ("mod",))
+  card(n, mod.at("activation"), s, tags: ("mod",), is-mod: true)
 }

@@ -224,6 +224,7 @@ specials:
     Enemies in that area suffer Disadvantage on all attacks until your next turn.
 
     No line of sight requirement.
+    
     _2 Heat._
 
 
@@ -259,7 +260,7 @@ mods:
   body: |
     Once per turn you may reroll a 1.
     
-    On a hit gain 1 Heat.
+    _On a hit gain 1 Heat._
 
 - name: Nanites
   activation: free
