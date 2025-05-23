@@ -1,3 +1,44 @@
+weapons:
+- name: Cannon
+  body: |
+    1 Slot, 8#hex Range.
+    
+    2 Damage. 1 Knock-back.
+
+    _2 Heat._
+
+- name: Cryo
+  body: |
+    1 Slot, 8#hex Range.
+    
+    1 Damage. Decrease enemy movement by 1#hex for 1 turn.
+
+    _1 Heat._
+
+- name: Heavy
+  body: |
+    2 Slots, 9#hex.
+    
+    3 Damage, 2 Knock-back. Takes an action to reload.
+
+    _2 Heat._
+
+- name: Rocket
+  body: |
+    1 Slot, 6#hex. 
+    
+    1 Damage. Blast radius 1#hex.
+
+    _2 Heat._
+
+- name: Flamethrower
+  body: | 
+    1 Slot, 4#hex.
+    
+    Fires in a cone. Targets gain +3 Heat. +1 more Heat on a crit.
+
+    _1 Heat._
+    
 specials:
 - name: Assault Weapon
   activation: reaction
