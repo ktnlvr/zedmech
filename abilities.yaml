@@ -174,6 +174,7 @@ specials:
   activation: action
   body: |
     Chose an enemy Mech visible to the sensors.
+    
     All attacks against them from allied Mechs gain Advantage until your next turn.
 
     _2 Heat._
@@ -224,6 +225,33 @@ specials:
 
     No line of sight requirement.
     _2 Heat._
+
+
+- name: Blade Anchor
+  tags: [ignore, melee, knockback, elevation]
+  counters:
+    - Supressor Protocol
+  activation: passive
+  body: |
+    If you are about to be pushed off the edge ignore the remaining knock-back.
+
+- name: Power Punch
+  tags: [knockback, melee]
+  activation: passive
+  body: |
+    Increase melee knock-back, but by 2#hex.
+
+    If a Mech bumps into another Mech it also receives knockback. They still take collision damage.
+
+    The increase in knock-back does not towards collision damage.
+
+- name: Linebreaker
+  tags: [knockback]
+  activation: passive
+  body: |
+    When dealing knock-back you may transfer all or some of it to Mechs adjacent to the target Mech. 
+
+    Transfer targets receive 1#hex of additional knock-back.
 
 mods:
 - name: Adaptive Logic 
