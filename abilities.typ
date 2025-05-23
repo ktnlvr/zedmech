@@ -15,12 +15,14 @@
   passive: "passive",
   action: "action",
   reaction: "reaction",
+  free: "free",
 )
 
 #let activation-colors = (
   "passive": rgb("#4b80ca"),
   "reaction": rgb("#efac28"),
   "action": rgb("#ef3a0c"),
+  "free": rgb("#3c9f9c")
 )
 
 #let card(name, activation, heat-cost: 0, tags: (), body) = [
@@ -52,4 +54,12 @@
   let s = eval(raw, mode: "markup", scope: (hex: hex, half: half, thirds: thirds))
   
   card(special.at("name"), special.at("activation"), s, tags: ("special",))
+}
+
+#for mod in abilities.mods {
+  let raw = mod.at("body")
+  let s = eval(raw, mode: "markup", scope: (hex: hex, half: half, thirds: thirds))
+  let n = upper(mod.at("name"))
+  
+  card(n, mod.at("activation"), s, tags: ("mod",))
 }

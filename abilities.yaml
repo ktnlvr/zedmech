@@ -165,6 +165,11 @@ specials:
 
     _2 Heat. Use once._
 
+- name: Carnot Drive
+  activation: action
+  body: |
+    Elevate your Heat to be one below the maximum Heat capacity.
+    
 - name: Target Lock
   activation: action
   body: |
@@ -219,3 +224,74 @@ specials:
 
     No line of sight requirement.
     _2 Heat._
+
+mods:
+- name: Adaptive Logic 
+  activation: passive
+  body: |
+    Once per turn you may reroll a 1.
+    
+    On a hit gain 1 Heat.
+
+- name: Nanites
+  activation: free
+  body: |
+    Destroy all deployables and vent the equivalent in Heat.
+
+    _Once per turn._
+
+- name: Overload Sigil
+  activation: passive
+  body: |
+    Immediately DETONATE when overheated. Don't receive damage. Vent all remaining.
+
+    _Once per game._
+
+- name: Motor Furnace
+  activation: action
+  body: |
+    Every time receiving Heat convert it to 1#hex of free Movement for your next turn.
+
+- name: Supressor Protocol
+  activation: passive
+  body: |
+    The target takes 1 Damage if they lose elevation due to knock-back from the attack.
+
+- name: Hexdense Plating 
+  activation: passive
+  body: |
+    Convert incoming damage into knock-back equal to the damage.
+
+    _Once per turn._
+
+- name: Reactive Overdrive
+  activation: passive
+  body: |
+    If the Mech ends the turn above #half its heat capacity gain 1#hex of free movement.
+    
+    After moving immediately vent 1 Heat.
+
+- name: Gratitude Circuit
+  activation: passive
+  body: |
+    When landing a critical heat immediately vent 1 Heat.
+
+- name: Rabbit Token
+  activation: passive
+  body: |
+    When the Mech hits at a Disadvantage the hit is considered a crit.
+
+- name: Quantum Double
+  activation: passive
+  body: |
+    You may Fire a weapon twice in a row. If either shot fails take 1 Damage and 1 Heat.
+
+- name: Magnetic Resonance
+  activation: passive
+  body: |
+    Force a target in line of sight to roll on the
+    Overheat table for any effect except DETONATION.
+    
+    _3 Heat._
+    
+    If the target rolls DETONATION nothing happens.
