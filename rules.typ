@@ -180,7 +180,6 @@ Mechs on low ground gets Disadvantage against all Mechs higher than them.
 
 A Mech on a higher elevation can see the Mechs in the lower elevation only if they are on the edge of that respective elevation.
 
-#design[Incentivizes pushing and gives an advantage to aggressive Mech builds. Very good at counting sniper positions.]
 If a Mech on a lower elevation stands on the higher elevation it can see it entirely.
 
 == Credits
