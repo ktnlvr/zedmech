@@ -30,7 +30,6 @@
 // Make abilities alphabetical
 // Remove rolls when spawning drones and separate out the rules
 
-
 #let hex = sym.hexa.stroked
 
 #let half = str.from-unicode(0xBD)
@@ -46,32 +45,13 @@ Builds on #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
 
 Every mech starts with...
 
-- 8 Hull Points (HP)
+- 7 Hull Points (HP)
 - 8 Heat Capacity (H)
-- 3 Movement (M), measured in #hex
+- 4 Movement (M), measured in #hex
 - 3 Slots (S)
 - 1 Mod
 
 You can buy/sell 2HP for 1 Movement and 1 Slot.
-
-=== Manufacturers
-
-Each ability has a Manufacturer behind it. It roughly defines the type of ability it is. Generally abilities of the same Manufacturer play well with each other.
-
-- _Fury_. Militaristic dominance, damage, destruction.
-- _Grit_. Close quarters, vitality, shielding.
-- _Vigor_. Elegance, speed, alertness.
-- _Entropy_. Disruption, chaos, explosions, surprise.
-- _Hive_. Support, drones, assistance, cover. 
-
-== Weapons
-
-- *CANNON*. 1 Slot, 8#hex, 2 Heat, 2 Damage, 1 Knock-back.
-- *CRYO*. 1 Slot, 8#hex, 1 Heat, 1 Damage. Decrease enemy movement by 1 for 1 turn.
-- *HEAVY*. 2 Slots, 9#hex, 2 Heat, 3 Damage, 2 Knock-back. Takes an action to reload.
-- *ROCKET*. 1 Slot, 6#hex. 2 Heat, 1 Damage. Blast radius 1#hex.
-- *LASER*. 1 Slot, 1  8#hex. 2 Heat, 1 Damage. Pierces on crits, roll for the next enemy in line. Ignore cover.
-- *FLAMETHROWER*. 1 Slot, 4#hex, 1 Heat. Fires in a cone. Targets gain +3 Heat. +1 more Heat on a crit.
 
 == Specials
 
@@ -180,7 +160,7 @@ Mechs on low ground gets Disadvantage against all Mechs higher than them.
 
 A Mech on a higher elevation can see the Mechs in the lower elevation only if they are on the edge of that respective elevation.
 
-If a Mech on a lower elevation stands on the higher elevation it can see it entirely.
+If a Mech on a lower elevation stands on edge of the higher elevation it can see it entirely.
 
 == Credits
 
