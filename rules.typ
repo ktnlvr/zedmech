@@ -36,6 +36,8 @@
 #let hex = sym.hexa.stroked
 #let heat = sym.triangle.stroked.rounded
 #let los = sym.angle.spheric
+#let push = sym.arrow.r.quad
+#let damage = sym.crossmark
 
 #let half = str.from-unicode(0xBD)
 #let thirds = str.from-unicode(0x2154)
@@ -71,10 +73,6 @@ You can buy/sell 2HP and 1 Slot for 1 Movement.
 A: I want a quick Mech, so I will drop 2 HP and gain 1 movement and 1 slot. That makes a 5HP/5M/4S Mech.
 ```
 
-== Heat
-
-Heat grows against your Hull. Heat is shown with the #heat. If they overlap the Mech _Detonates_.
-
 == Specials & Specials
 
 Takes 1 slot. Activating requires 1 action. If reactive, takes 1 action from the next turn.
@@ -95,35 +93,42 @@ A Mod also takes 1 slot. Only one Mod can be installed at a time. Make them coun
 
 Roll 1 dice. 
 
-1, 2 and 3 are failures. 4 and 5 are successes. 6 is a _crit_. On a _crit_ something extra might happen.
+#sym.die.one, #sym.die.two and #sym.die.three are failures. #sym.die.four and #sym.die.five are successes. #sym.die.six is a _critical success_. 
+
+On a _crit_ something extra might happen.
 
 === Line of Sight
 
-Two Mechs are in line of sight if a straight line can be drawn from one to the other. #los
+Two positions are visible (#los) if there exists a straight line from one to the other. 
 
-=== Knock-back
+=== Pushing
 
-Move the target away from the attacker by the specified amount in #hex.
+Move the target away from the attacker by the specified amount in #hex. Shown with the #push symbol.
 
-If a wall is in the way take damage equal to the remaining knock-back.
+If a wall is in the way take damage equal to the remaining push.
+
+=== Taking Damage and Heat
+
+Heat (#heat) and Damage (#damage) grow against your Hull. If they overlap the Mech _Detonates_.
 
 == Turn
 
 === Shooting <shooting>
 
-Choose a weapon. Pick a #hex in your line of sight. Apply effects described on the weapon.
+Choose a weapon. Pick a #los #hex within range. Apply effects described on the weapon.
 
 If the space is occupied by a Mech it may dodge. For that do a roll. Ignore effects on success.
 
 === Punching
 
-Choose an adjacent #hex. 1 _Knock-back_, 2 _Damage_. +1 #heat.
+Choose an adjacent #hex.
+Gain 1#heat, deal 1#push 2#damage.
 
 If the space is occupied by a Mech it may dodge. For that, do a roll. On a _critical success_ no effects are applied.
 
 === Moving
 
-Move your Mech by one #hex for each Movement it has or less. +2 #heat.
+Move your Mech by one #hex for each Movement it has or less. Gain 2 #heat.
 
 === Venting
 
@@ -137,7 +142,7 @@ The weapon is considered fired for the next activation.
 
 == Overheating
 
-When Heat and Damage would overlap the Mech overheats. Roll the amount of dice equal to overlap. Take the lowest. On a success remove all overlap.
+When #heat and #damage overlap the Mech overheats. Roll the amount of dice equal to overlap. Take the lowest. On a success remove all overlap.
 
 == Credit
 
