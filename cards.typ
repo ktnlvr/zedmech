@@ -1,4 +1,5 @@
 #set page(width: 120mm, height: 70mm, margin: 0in)
+#set text(font: "Inter", size: 14pt)
 
 #let cards = yaml("cards.yaml")
 
