@@ -37,7 +37,8 @@
 #let heat = sym.triangle.stroked.rounded
 #let los = sym.angle.spheric
 #let push = sym.arrow.r.quad
-#let damage = sym.crossmark
+#let damage = sym.Chi
+#let radius = sym.circle.stroked
 
 #let half = str.from-unicode(0xBD)
 #let thirds = str.from-unicode(0x2154)
@@ -62,8 +63,8 @@ Inspired by #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
 
 Every mech starts with...
 
-- 7 Hull Points (HP)
-- 4 Movement (M), measured in #hex
+- 10 Hull Points (HP)
+- 3 Movement (M), measured in #hex
 - 3 Slots (S)
 - 1 Mod
 
@@ -143,6 +144,10 @@ The weapon is considered fired for the next activation.
 == Overheating
 
 When #heat and #damage overlap the Mech overheats. Roll the amount of dice equal to overlap. Take the lowest. On a success remove all overlap.
+
+== Symbols
+
+1. *_r_#radius* Targets everything in radius _r_. 0 means the space itself, 1 is the space itself and all the neighboring spaces and so on.
 
 == Credit
 

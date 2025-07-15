@@ -50,7 +50,7 @@ jobs:
 
       - name: Compile Typst to PDF
         run: |
-          typst compile abilities.typ abilities.pdf
+          typst compile cards.typ cards.pdf
           typst compile rules.typ rules.pdf
           typst compile codex.typ codex.pdf
 
