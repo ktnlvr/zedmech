@@ -58,7 +58,7 @@ jobs:
         run: |
           mkdir output
           cp index.html output/
-          cp rules.pdf abilities.pdf codex.pdf output/
+          cp rules.pdf cards.pdf codex.pdf output/
           echo "zedmech.ktnlvr.dev" > output/CNAME
 
       - name: Upload output as artifact
