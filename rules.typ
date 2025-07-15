@@ -1,6 +1,8 @@
+#import "@preview/bob-draw:0.1.1": *
+
 #set page("a5", background: image("assets/backdrop.png", fit: "stretch"))
 #set document(author: "Artur Roos", title: "Zedmech")
-#set text(font: "Exo 2", size: 12pt)
+#set text(font: "Inter", size: 14pt)
 
 // Feedback
 // - no melee abilities basically
@@ -32,11 +34,20 @@
 // abilities that increase range
 
 #let hex = sym.hexa.stroked
+#let heat = sym.triangle.stroked.rounded
+#let los = sym.angle.spheric
 
 #let half = str.from-unicode(0xBD)
 #let thirds = str.from-unicode(0x2154)
 
-#align(center)[#text(size: 24pt)[*Zedmech*]]
+#align(center)[#render(```
+
+ ___  ___  ___| _ _  ___  ___ |___ 
+ __/ |___)|   || | )|___)|    |   )
+/__  |__  |__/ |  / |__  |__  |  / 
+                                   
+
+```)]
 
 #outline()
 #pagebreak()
@@ -62,18 +73,13 @@ A: I want a quick Mech, so I will drop 2 HP and gain 1 movement and 1 slot. That
 
 == Heat
 
-Heat grows against your Hull. If one overflows into another your mech _Detonates_.
+Heat grows against your Hull. Heat is shown with the #heat. If they overlap the Mech _Detonates_.
 
-
-== Specials
+== Specials & Specials
 
 Takes 1 slot. Activating requires 1 action. If reactive, takes 1 action from the next turn.
 
-== Mods
-
-Sometimes you want to give your Mech a little more _zing_. Only
-one Mod can be installed at a time. Make them count.
-
+A Mod also takes 1 slot. Only one Mod can be installed at a time. Make them count.
 
 == Taking a Turn
 
@@ -85,7 +91,6 @@ one Mod can be installed at a time. Make them count.
 3. When done, *Vent* or *Overwatch*.
 4. Pass the turn to the next person.
 
-
 === Rolling
 
 Roll 1 dice. 
@@ -94,11 +99,11 @@ Roll 1 dice.
 
 === Line of Sight
 
-Two Mechs are in line of sight if a straight line can be drawn from one to the other.
+Two Mechs are in line of sight if a straight line can be drawn from one to the other. #los
 
 === Knock-back
 
-Move the target away from the attacker by N #hex.
+Move the target away from the attacker by the specified amount in #hex.
 
 If a wall is in the way take damage equal to the remaining knock-back.
 
@@ -112,21 +117,21 @@ If the space is occupied by a Mech it may dodge. For that do a roll. Ignore effe
 
 === Punching
 
-Chose an adjacent #hex. 1 _Knock-back_, 2 _Damage_. _+1 Heat_.
+Choose an adjacent #hex. 1 _Knock-back_, 2 _Damage_. +1 #heat.
 
 If the space is occupied by a Mech it may dodge. For that, do a roll. On a _critical success_ no effects are applied.
 
 === Moving
 
-Move your Mech by one #hex for each Movement it has or less. _+2 Heat_.
+Move your Mech by one #hex for each Movement it has or less. +2 #heat.
 
 === Venting
 
-Remove _3 Heat_.
+Remove 3 #heat.
 
 === Overwatching
 
-Remove 1 Heat. If a Mech enters a Weapon's range you may fire that weapon. Follow the rules for #link(<shooting>)[_shooting_].
+Remove 1 #heat. If a Mech enters a Weapon's range you may fire that weapon. Follow the rules for #link(<shooting>)[_shooting_].
 
 The weapon is considered fired for the next activation.
 
