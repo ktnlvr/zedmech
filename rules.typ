@@ -29,6 +29,7 @@
 // Capped advantage way too powerful
 // Make abilities alphabetical
 // Remove rolls when spawning drones and separate out the rules
+// abilities that increase range
 
 #let hex = sym.hexa.stroked
 
@@ -37,131 +38,102 @@
 
 #align(center)[#text(size: 24pt)[*Zedmech*]]
 
-A simple rule set for hex-based tabletop mech fighting game. Hackable, simplistic, quick.
+#outline()
+#pagebreak()
 
-Builds on #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
+A simple rule set for hex-based tabletop mech fighting game. Hackable, simple, quick.
+
+Inspired by #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
 
 == Assembling
 
 Every mech starts with...
 
 - 7 Hull Points (HP)
-- 8 Heat Capacity (H)
 - 4 Movement (M), measured in #hex
 - 3 Slots (S)
 - 1 Mod
 
-You can buy/sell 2HP for 1 Movement and 1 Slot.
+You can buy/sell 2HP and 1 Slot for 1 Movement.
+
+```
+A: I want a quick Mech, so I will drop 2 HP and gain 1 movement and 1 slot. That makes a 5HP/5M/4S Mech.
+```
+
+== Heat
+
+Heat grows against your Hull. If one overflows into another your mech _Detonates_.
+
 
 == Specials
 
 Takes 1 slot. Activating requires 1 action. If reactive, takes 1 action from the next turn.
-
 
 == Mods
 
 Sometimes you want to give your Mech a little more _zing_. Only
 one Mod can be installed at a time. Make them count.
 
-== Taking Turns
 
-Each Mech has 3 actions on its turn. An action can be spent...
+== Taking a Turn
 
-- Firing a weapon.
-- Brawling in close combat.
-- Moving around.
-- Activating specials.
-- Venting some heat to cool down.
+1. Choose a Mech to activate that wasn't activated before.
+2. Perform as many actions as you wish. You can...
+  - *Shoot* a visible Mech.
+  - *Punch* an adjacent Mech.
+  - *Move* to available spaces.
+3. When done, *Vent* or *Overwatch*.
+4. Pass the turn to the next person.
 
-Actions can also be spent out of turn on activating passive reactive specials.
 
 === Rolling
 
-When asked to roll dice tally your boons and banes.
+Roll 1 dice. 
 
-Ok, I will write this out properly later. In general the formula is...
-
-$#text()[Dice Amount] = 1 + min(1, |#text()[Advantage] - #text()[Disadvantage]|)$
-
-If more advantage than disadvantage pick the highest, otherwise pick the lowest. That's your result.
-
-1, 2 and 3 are failures. 4 and 5 are successes. 6 is a _critical_ success. On a critical success something extra might happen.
+1, 2 and 3 are failures. 4 and 5 are successes. 6 is a _crit_. On a _crit_ something extra might happen.
 
 === Line of Sight
 
-When a direct line can be drawn from your Mech's #hex to another #hex the Mech is considered to have _line of sight_ to it or simply _see_ it.  
-
-If a direct line of sight can be drawn from the Mech or any of the Mech's deployable, it is considered to _sense_ it or have it _within sensor distance_.
+Two Mechs are in line of sight if a straight line can be drawn from one to the other.
 
 === Knock-back
 
-Some weapons will stagger you Mech. When taking knock-back move your Mech the corresponding amount of #hex away from the attacker.
+Move the target away from the attacker by N #hex.
 
-If a wall is in the way take damage equal to the remaining knockback.
+If a wall is in the way take damage equal to the remaining knock-back.
 
-== Firing
+== Turn
 
-Chose a weapon. Each weapon may only fire once per turn.
+=== Shooting <shooting>
 
-Pick a space in your line of sight, doesn't have to be occupied by anything.
+Choose a weapon. Pick a #hex in your line of sight. Apply effects described on the weapon.
 
-Roll to hit. On a success deal the described damage and apply any effects.
+If the space is occupied by a Mech it may dodge. For that do a roll. Ignore effects on success.
 
-== Brawling
+=== Punching
 
-When two Mechs are adjacent they are considered to be in close combat. The attacker may roll to hit for 1 Damage for 2 Heat. If the damage goes through apply 2#hex knockback.
+Chose an adjacent #hex. 1 _Knock-back_, 2 _Damage_. _+1 Heat_.
 
-== Moving
+If the space is occupied by a Mech it may dodge. For that, do a roll. On a _critical success_ no effects are applied.
 
-You may move up to your Mech's Movement in #hex. Going up one elevation level counts as 1#hex of movement.
+=== Moving
 
-== Venting
+Move your Mech by one #hex for each Movement it has or less. _+2 Heat_.
 
-Remove 2 Heat.
+=== Venting
 
-== Ending a Turn
+Remove _3 Heat_.
 
-When a Mech has exhausted all its actions or the player voluntarily decides to it may end its turn. When ending a turn it may _Vent_ or go into _Overwatch_.
+=== Overwatching
 
-*Venting* halves the Mech's current heat.
+Remove 1 Heat. If a Mech enters a Weapon's range you may fire that weapon. Follow the rules for #link(<shooting>)[_shooting_].
 
-Going into *Overwatch* puts the Mech in "high-alert" mode. If any enemy enters its firing range within its line of sight vision it may perform a reaction shot. Fire like the Mech would on its turn and subtract one action from its next turn. You use your Overwatch shot only once.
+The weapon is considered fired for the next activation.
 
 == Overheating
 
-When a Mech reaches its Maximum heat, immediately roll on the Overheat
-table and take 1 Damage. Add the amount of Heat over Mech's
-maximum heat capacity to the roll.
+When Heat and Damage would overlap the Mech overheats. Roll the amount of dice equal to overlap. Take the lowest. On a success remove all overlap.
 
-#table(
-  columns: (auto, 1fr), 
-  inset: 5pt, 
-  align: horizon, 
-  table.header([*d*], [*Effect*]),
-  [1], [Weapon Misfire, fire a random weapon in a random direction], 
-  [2], [Vulnerable, add +1 to any Damage taken until next turn], 
-  [3], [Locomotion Damaged, half the movement until the next turn], 
-  [4], [Immobilized, may not move until next turn], 
-  [5], [Shutdown, may not perform any actions except activating Specials or Mods until next turn], 
-  [6], [DETONATION, Blast radius of 4#hex. Roll and deal the number +1 Damage and Heat to everything in the blast area. Targets roll, save on a critical success.]
-)
+== Credit
 
-== Half-cover
-
-If an object is partially obscured by something the attacker gains Disadvantage on any attack.
-
-If the attacker and target are adjacent the attacker does not gain cover.
-
-== Elevation
-
-Mechs on high ground gets Advantage against all Mechs lower than them. 
-
-Mechs on low ground gets Disadvantage against all Mechs higher than them.
-
-A Mech on a higher elevation can see the Mechs in the lower elevation only if they are on the edge of that respective elevation.
-
-If a Mech on a lower elevation stands on edge of the higher elevation it can see it entirely.
-
-== Credits
-
-Thanks to Unai, Kartik, Shannon and Noah for play-testing and contributing ideas.
+Thanks to Robert, Unai, Kartik, Shannon and Noah for play-testing and contributing ideas.
