@@ -1,19 +1,97 @@
 cards:
   - name: Auto Cannon
-    brief: 8#hex 2#heat / 1#push 3#damage
+    brief: 10#hex 2#heat / 1#push 3#damage
+    family: attack
   - name: Gatling Gun
-    brief: 10#hex 2#heat / 2x2#damage  
-    text: "Two attacks, 2#damage each. Two separate dodges."
+    brief: 8#hex 2#heat / 2x2#damage  
+    text: "Two attacks, 2#damage each.Two separate dodges."
+    family: attack
   - name: Frost Beam
     brief: 8#hex 2#heat / 4#damage -3#heat
+    family: control
+    text: "Target must spend heat before moving next turn."
   - name: Flamethrower
-    brief: 6#hex 3#heat / 4#heat
+    brief: 6#hex 3#heat / 3#cone 3#heat
+    family: control
   - name: Rocket Launcher
-    brief: 6#hex 3#heat / 1#radius 2#damage
+    brief: 8#hex 3#heat / 1#radius 2#damage
+    family: support
   - name: Laser
     brief: 16#hex 3#heat / 2#damage 1#heat
+    family: attack
   - name: Railgun
     brief: 20#hex 6#heat / 4#damage 2#heat
+    family: attack
+    text: "Can't be used in _Overwatch_."
   - name: Slugger
     brief: 5#hex 2#heat / 3x#hex 1#push 2#damage
     text: "Up to 3 targets at once."
+    family: defence
+  - name: "#reaction Assault Weapon"
+    text: "_Overwatch_. fire multiple times"
+  - name:  "#reaction Active Chamber"
+    text: "_Miss_. can Shoot with this weapon again."
+  - name: "#passive Homing Shots"
+    text: "Shoot at a target in half range. Ignore all bonuses and penalties."
+  - name: "#passive Heat Sinks"
+    text: "Overlaps under 2 don't matter."
+    family: heat
+  - name: "#passive Shield"
+    text: "Reduce incoming damage by 1, but not lower than 1. Ignored on crits."
+    family: defence
+  - name: "#passive Molten Core"
+    text: "+1 to hit when #heat>2."
+    family: heat
+  - name: "#passive Instability Dampeners"
+    text: "Additional roll avoid knockback effects."
+    familty: mobility
+  - name: "#passive Leap Springs"
+    text: "Ignore 2#hex difficult terrain or Mech per Movement. Don't end movement in an occupied #hex."
+    family: mobility
+  - name: "#passive Nitro Boosters"
+    text: +2#hex Movement
+    family: mobility
+  - name: "#passive Gauss Hook"
+    text: Inflict knockback from the opposite direction.
+    family: mobility
+  - name: "#reaction Shadow Cloak"
+    text: _Did not move this or last round_. +2 to evade.
+    family: trickery
+  - name: "#reaction Kinetic Converter"
+    text: _After knockback._ Move 3#hex.
+    family: trickery
+  - name: "#passive Thrusters"
+    text: "After moving 3 or more #hex. Gain +1 to Punch."
+    family: mobility
+  - name: "#reaction Hunter Mode"
+    text: "_Destroy a Mech_. Vent all #heat. Move 2#hex."
+    family: trickery
+  - name: "#reaction Recoil Inverter"
+    text: "_When Shooting_. Move 2#hex."
+    family: mobility
+  - name: "#passive Shadow Step"
+    text: "Avoid triggering Overwatch if only moved. Trigger all avoided Overwatches if Shooting or Punching."
+    family: trickery
+  - name: "#passive Pathfinding Override"
+    text: "Ignore difficult terrain effects unless you stop movement in them. Vent 2 extra #heat in difficult terrain."
+    family: mobility
+  - name: "#reaction Echo Barrage"
+    text: ""
+  - name: "#active Gravity Well"
+    brief: "2#heat / 6#hex 2#radius"
+    text: "Choose a visible #hex within 6#hex. All units within 2#radius are Pushed into the center." 
+    family: control
+  - name: "#active Carnot Drive"
+    text: "Spend N#heat. "
+  - name: "#active Target Lock"
+    brief: "3#heat"
+    text: |
+      Select a target. +2#hex range and +2 to hit against them. 
+
+      If they move out of LOS the effect drops.
+  - name: "#active Blink Engine"
+    brief: "3#heat 3#radius"
+    text: "Teleport to any #hex adjacent to a visible target within 3#radius."
+  - name: "#active Thermal Bloom"
+    brief: "N+2#heat 6#hex"
+    text: "Spend N+2#heat. Choose a #hex within 6#radius. All Mechs within 3#hex of that #hex gain +N#heat."

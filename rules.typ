@@ -44,12 +44,9 @@
 #let thirds = str.from-unicode(0x2154)
 
 #align(center)[#render(```
-
  ___  ___  ___| _ _  ___  ___ |___ 
  __/ |___)|   || | )|___)|    |   )
 /__  |__  |__/ |  / |__  |__  |  / 
-                                   
-
 ```)]
 
 #outline()
@@ -63,22 +60,23 @@ Inspired by #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
 
 Every mech starts with...
 
-- 10 Hull Points (HP)
-- 3 Movement (M), measured in #hex
-- 3 Slots (S)
-- 1 Mod
+- 10 Hull Points (HP), how tough your mech is
+- 3 Movement (M), how fast your mech moves
+- 4 Load (L), how much your mech can carry
 
-You can buy/sell 2HP and 1 Slot for 1 Movement.
+You can buy/sell 2HP and 1 Load for extra 1 Movement.
 
 ```
-A: I want a quick Mech, so I will drop 2 HP and gain 1 movement and 1 slot. That makes a 5HP/5M/4S Mech.
+A: I want a quick Mech, so I will drop 2 HP for 1 Movement. That makes a 8HP/4M/3L Mech.
 ```
 
-== Specials & Specials
+== Equipment
 
-Takes 1 slot. Activating requires 1 action. If reactive, takes 1 action from the next turn.
+Your Mech can bear 3 types of equipment: *Weapons*, *Specials* and *Mods*.
 
-A Mod also takes 1 slot. Only one Mod can be installed at a time. Make them count.
+A Special takes 1 slot. Only one of the same special can be attached to a Mech at a time. 
+
+Every Special can be used as a Mod. A mech may only have one Mod at a time. Make them count.
 
 == Taking a Turn
 
@@ -92,7 +90,7 @@ A Mod also takes 1 slot. Only one Mod can be installed at a time. Make them coun
 
 === Rolling
 
-Roll 1 dice. 
+Roll a standard dice. 
 
 #sym.die.one, #sym.die.two and #sym.die.three are failures. #sym.die.four and #sym.die.five are successes. #sym.die.six is a _critical success_. 
 
