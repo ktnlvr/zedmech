@@ -1,6 +1,12 @@
+# DELTA = heat
+# EPSILON = mobility
+# KAPPA = control
+# OMEGA = trickery
+# ZETA = support
+
 cards:
   - name: Auto Cannon
-    brief: 10#hex 2#heat / 1#push 3#damage
+    brief: 10#hex 3#heat / 1#push 3#damage
     family: attack
   - name: Gatling Gun
     brief: 8#hex 2#heat / 2x2#damage  
@@ -9,12 +15,12 @@ cards:
   - name: Frost Beam
     brief: 8#hex 2#heat / 4#damage -3#heat
     family: control
-    text: "Target must spend heat before moving next turn."
+    text: "Target must gain #heat from anything but moving before doing a move next turn."
   - name: Flamethrower
-    brief: 6#hex 3#heat / 3#cone 3#heat
+    brief: 3#cone 3#heat / 3#heat
     family: control
   - name: Rocket Launcher
-    brief: 8#hex 3#heat / 1#radius 2#damage
+    brief: 8#hex 3#heat 1#radius / 2#damage
     family: support
   - name: Laser
     brief: 16#hex 3#heat / 2#damage 1#heat
@@ -23,12 +29,15 @@ cards:
     brief: 20#hex 6#heat / 4#damage 2#heat
     family: attack
     text: "Can't be used in _Overwatch_."
+  - name: Mortar
+    brief: 12#hex 2#heat / 2#damage & 1#radius 1#push 
+    text: "Push everything around the target by 1#hex."
   - name: Slugger
     brief: 5#hex 2#heat / 3x#hex 1#push 2#damage
     text: "Up to 3 targets at once."
     family: defence
   - name: "#reaction Assault Weapon"
-    text: "_Overwatch_. fire multiple times"
+    text: "_Overwatch_. Fire multiple times"
   - name:  "#reaction Active Chamber"
     text: "_Miss_. can Shoot with this weapon again."
   - name: "#passive Homing Shots"
@@ -75,14 +84,12 @@ cards:
   - name: "#passive Pathfinding Override"
     text: "Ignore difficult terrain effects unless you stop movement in them. Vent 2 extra #heat in difficult terrain."
     family: mobility
-  - name: "#reaction Echo Barrage"
-    text: ""
   - name: "#active Gravity Well"
     brief: "2#heat / 6#hex 2#radius"
     text: "Choose a visible #hex within 6#hex. All units within 2#radius are Pushed into the center." 
     family: control
-  - name: "#active Carnot Drive"
-    text: "Spend N#heat. "
+  - name: "#reaction Carnot Drive"
+    text: "_When removing heat._ Remove 1#heat extra."
   - name: "#active Target Lock"
     brief: "3#heat"
     text: |
@@ -90,8 +97,83 @@ cards:
 
       If they move out of LOS the effect drops.
   - name: "#active Blink Engine"
-    brief: "3#heat 3#radius"
-    text: "Teleport to any #hex adjacent to a visible target within 3#radius."
+    brief: "2#heat 4#radius"
+    text: "Teleport to any #hex adjacent to a visible target within 4#radius."
+    family: mobility
   - name: "#active Thermal Bloom"
-    brief: "N+2#heat 6#hex"
+    brief: "N+2#heat 6#radius 3#hex / N#heat"
     text: "Spend N+2#heat. Choose a #hex within 6#radius. All Mechs within 3#hex of that #hex gain +N#heat."
+    family: heat
+  - name: "#active Plasma Wall"
+    brief: "6#radius 2#heat"
+    text: "Within 6#radius. Place a 2x1 immobile wall on an edge between two #hex."
+    family: defence
+  - name: "#passive Power Punch"
+    brief: " -1#damage +3#push"
+    text: "Incease melee knockback by 3#hex, reduce damage by 1#damage."
+    family: attack
+  - name: "#passive Sentinel"
+    brief: "1#radius"
+    text: "_A neighhboring Mech voluntarily Moves away_. Punch it."
+    family: defence
+  - name: "#passive Distributed Mind"
+    brief: "1#heat"
+    text: "Allied Mech can execute an action as this Mech. 1#heat each."
+    family: trickery
+  - name: "#passive Ichor Fuel"
+    brief: "2#radius 2#heat"
+    text: "Drones detonate 2#radius 2#heat."
+    family: support
+  - name: "#active Maneuver Thrusters"
+    brief: "2#heat"
+    text: "+1 to evade until next activation"
+  - name: "#active Quick Reload"
+    brief: "4#heat"
+    text: "Reset all guns this activation."
+  - name: "#reaction Flame Glyph"
+    brief: "2#heat / +1#damage"
+    text: "+1#damage to Shoots if the enemy is within your #heat#radius."
+  - name: "#reaction Riposte"
+    brief: "1#heat"
+    text: "_When Punched_. Punch back if in range."
+  - name: "#active Charge"
+    brief: "4#heat 5#hex / 1#damage 4#push"
+    text: Move 5#hex in a line. Deal 1#damage 4#push to all obstacles.
+  - name: "#active Sensor Array"
+    text: "Pick one enemy. -1 to evade until their activation."
+  - name: "#passive Adaptive Logic Core"
+    text: "Once per turn reroll a 1."
+    family: trickery
+  - name: "#active Nanite Core"
+    text: "Destroy N deployables. Vent 2N#heat"
+    family: support
+  - name: "#reaction Overload Sigil"
+    text: "_When DETONATING_. Ignore damage, vent all heat.\n\nOnce per game."
+    family: heat
+  - name: "#reaction Motor Furnace"
+    brief: "#passive"
+    text: "_Gaining heat from non-Movement._ Move 2#hex."
+    family: mobility
+  - name: "#passive Suppression Protocol"
+    text: "+1#damage for Pushing"
+    family: attack
+  - name: "#passive Insulated Parts"
+    text: "Incoming #damage is limited by your heat. At least 1. Gain #heat equal to ignored damage."
+    family: heat
+  - name: "#passive Hexdense Plating"
+    text: ""
+    family: defence
+  - name: "#passive Reactive Overdrive"
+  - name: "#passive Obedience Protocol"
+  - name: "#passive Luck Token"
+    text: "A rolled 1 is a 6."
+    family: trickery
+  - name: "#passive Quantum Doublet"
+    text: "+1 to evade."
+  - name: "#passive Cascade"
+  - name: "#reaction Grim Echo"
+    text: "_When an allied Mech is killed_. Immediately interrupt the opponent's turn. This Mech activates."
+    family: trickery
+  - name: "#active Rope Cannon"
+    brief: "3#heat 5#radius"
+    text: "Pick a target in sight within 5#hex. It may evade. On a fail, immediately pull it towards you."

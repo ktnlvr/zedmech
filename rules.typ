@@ -33,6 +33,9 @@
 // Remove rolls when spawning drones and separate out the rules
 // abilities that increase range
 
+// ideas:
+// concentration
+
 #let hex = sym.hexa.stroked
 #let heat = sym.triangle.stroked.rounded
 #let los = sym.angle.spheric
@@ -60,21 +63,15 @@ Inspired by #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
 
 Every mech starts with...
 
-- 10 Hull Points (HP), how tough your mech is
+- 12 Hull Points (HP), how tough your mech is
 - 3 Movement (M), how fast your mech moves
 - 4 Load (L), how much your mech can carry
 
 You can buy/sell 2HP and 1 Load for extra 1 Movement.
 
-```
-A: I want a quick Mech, so I will drop 2 HP for 1 Movement. That makes a 8HP/4M/3L Mech.
-```
-
 == Equipment
 
-Your Mech can bear 3 types of equipment: *Weapons*, *Specials* and *Mods*.
-
-A Special takes 1 slot. Only one of the same special can be attached to a Mech at a time. 
+Your Mech can bear 2 types of equipment: *Weapons* and *Specials*. They take 1 Load each. 
 
 Every Special can be used as a Mod. A mech may only have one Mod at a time. Make them count.
 
@@ -98,7 +95,7 @@ On a _crit_ something extra might happen.
 
 === Line of Sight
 
-Two positions are visible (#los) if there exists a straight line from one to the other. 
+Two positions are visible if there exists a straight line from one to the other. 
 
 === Pushing
 
@@ -143,9 +140,7 @@ The weapon is considered fired for the next activation.
 
 When #heat and #damage overlap the Mech overheats. Roll the amount of dice equal to overlap. Take the lowest. On a success remove all overlap.
 
-== Symbols
-
-1. *_r_#radius* Targets everything in radius _r_. 0 means the space itself, 1 is the space itself and all the neighboring spaces and so on.
+An Overheating Mech explodes dealing 3X and 2#heat to all Mechs in 4#radius. 
 
 == Credit
 
