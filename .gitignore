@@ -1,2 +1,4 @@
-main.pdf
-abilities.pdf
+output
+artifacts
+
+*.pdf

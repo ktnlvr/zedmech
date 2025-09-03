@@ -9,7 +9,7 @@ cards:
     brief: 10#hex 3#heat / 1#push 3#damage
     family: attack
   - name: Gatling Gun
-    brief: 8#hex 2#heat / 2x2#damage  
+    brief: 8#hex 2#heat / 2x2#damage
     text: "Two attacks, 2#damage each. Two separate dodges."
     family: attack
   - name: Frost Beam
@@ -30,7 +30,7 @@ cards:
     family: attack
     text: "Can't be used in _Overwatch_."
   - name: Mortar
-    brief: 12#hex 2#heat / 2#damage & 1#radius 1#push 
+    brief: 12#hex 2#heat / 2#damage & 1#radius 1#push
     text: "Push everything around the target by 1#hex."
   - name: Slugger
     brief: 5#hex 2#heat / 3x#hex 1#push 2#damage
@@ -38,7 +38,7 @@ cards:
     family: defence
   - name: "#reaction Assault Weapon"
     text: "_Overwatch_. Fire multiple times"
-  - name:  "#reaction Active Chamber"
+  - name: "#reaction Active Chamber"
     text: "_Miss_. can Shoot with this weapon again."
   - name: "#passive Homing Shots"
     text: "Shoot at a target in half range. Ignore all bonuses and penalties."
@@ -86,7 +86,7 @@ cards:
     family: mobility
   - name: "#active Gravity Well"
     brief: "2#heat / 6#hex 2#radius"
-    text: "Choose a visible #hex within 6#hex. All units within 2#radius are Pushed into the center." 
+    text: "Choose a visible #hex within 6#hex. All units within 2#radius are Pushed into the center."
     family: control
   - name: "#reaction Carnot Drive"
     text: "_When removing heat._ Remove 1#heat extra."
@@ -177,3 +177,4 @@ cards:
   - name: "#active Rope Cannon"
     brief: "3#heat 5#radius"
     text: "Pick a target in sight within 5#hex. It may evade. On a fail, immediately pull it towards you."
+    icon: delapouite-rope-dart.svg

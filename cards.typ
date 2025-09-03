@@ -26,7 +26,19 @@
   pad(rest: 15pt)[
     #if card.at("family", default: none) != none {
       let symbol = families.at(card.at("family"))
-      place[#box(width: 100%, height: 100%)[#align(center + horizon)[#text(size: 27mm, fill: silver, font: "Charter")[#symbol]]]]
+      place[#box(width: 100%, height: 100%)[
+        #align(center + horizon)[
+          #text(size: 27mm, fill: silver, font: "Charter")[#symbol]
+        ]
+      ]]
+
+      if card.at("icon", default: none) != none {
+        place[#box(width: 100%, height: 100%)[
+          #align(top + right)[
+            #image("artifacts/" + card.at("icon"), width: 40pt, )
+          ]
+        ]]
+      }
     }
     
     = #text(size: 24pt)[#eval(card.name, mode: "markup", scope: scope)]
