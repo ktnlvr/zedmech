@@ -63,9 +63,9 @@ Inspired by #link("https://berserkerworks.itch.io/mek28")[Bill Ward's  Mek28].
 
 Every mech starts with...
 
-- 12 Hull Points (HP), how tough your mech is
+- 18 Hull Points (HP), how tough your mech is
 - 3 Movement (M), how fast your mech moves
-- 4 Load (L), how much your mech can carry
+- 3 Load (L), how much your mech can carry
 
 You can buy/sell 2HP and 1 Load for extra 1 Movement.
 
@@ -118,7 +118,7 @@ If the space is occupied by a Mech it may dodge. For that do a roll. Ignore effe
 === Punching
 
 Choose an adjacent #hex.
-Gain 1#heat, deal 1#push 2#damage.
+Gain 3#heat, deal 1#push 2#damage.
 
 If the space is occupied by a Mech it may dodge. For that, do a roll. On a _critical success_ no effects are applied.
 
@@ -128,11 +128,11 @@ Move your Mech by one #hex for each Movement it has or less. Gain 2 #heat.
 
 === Venting
 
-Remove 3 #heat.
+Remove 6 #heat.
 
 === Overwatching
 
-Remove 1 #heat. If a Mech enters a Weapon's range you may fire that weapon. Follow the rules for #link(<shooting>)[_shooting_].
+Remove 2 #heat. If a Mech enters a Weapon's range you may fire that weapon. Follow the rules for #link(<shooting>)[_shooting_].
 
 The weapon is considered fired for the next activation.
 
@@ -140,7 +140,7 @@ The weapon is considered fired for the next activation.
 
 When #heat and #damage overlap the Mech overheats. Roll the amount of dice equal to overlap. Take the lowest. On a success remove all overlap.
 
-An Overheating Mech explodes dealing 3X and 2#heat to all Mechs in 4#radius. 
+An Overheating Mech explodes. All mech in 4#radius evade on a crit. Otherwise they take 3X and 2#heat. 
 
 == Credit
 

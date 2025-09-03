@@ -10,7 +10,7 @@ cards:
     family: attack
   - name: Gatling Gun
     brief: 8#hex 2#heat / 2x2#damage  
-    text: "Two attacks, 2#damage each.Two separate dodges."
+    text: "Two attacks, 2#damage each. Two separate dodges."
     family: attack
   - name: Frost Beam
     brief: 8#hex 2#heat / 4#damage -3#heat
