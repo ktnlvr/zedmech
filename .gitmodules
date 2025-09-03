@@ -1,0 +1,3 @@
+[submodule "external/game-icons"]
+	path = external/game-icons
+	url = https://github.com/game-icons/icons.git
