@@ -18,9 +18,29 @@
 #let half = str.from-unicode(0xBD)
 #let thirds = str.from-unicode(0x2154)
 
-#let scope = (hex: hex, half: half, thirds: thirds, heat: heat, push: push, damage: damage, radius: radius, cone: cone, reaction: reaction, active: active, passive: passive);
+#let scope = (
+  hex: hex,
+  half: half,
+  thirds: thirds,
+  heat: heat,
+  push: push,
+  damage: damage,
+  radius: radius,
+  cone: cone,
+  reaction: reaction,
+  active: active,
+  passive: passive
+);
 
-#let families = ("attack": sym.Alpha, "defence": sym.Sigma, "control": sym.Kappa, "support": sym.Zeta, "heat": sym.Delta, "mobility": sym.Epsilon, "trickery": sym.Omega)
+#let families = (
+  "attack": sym.Alpha,
+  "defence": sym.Sigma,
+  "control": sym.Kappa,
+  "support": sym.Zeta,
+  "heat": sym.Delta,
+  "mobility": sym.Epsilon,
+  "trickery": sym.Omega
+)
 
 #for card in cards.at("cards") {
   pad(rest: 15pt)[
@@ -31,16 +51,16 @@
           #text(size: 27mm, fill: silver, font: "Charter")[#symbol]
         ]
       ]]
-
-      if card.at("icon", default: none) != none {
-        place[#box(width: 100%, height: 100%)[
-          #align(top + right)[
-            #image("artifacts/" + card.at("icon"), width: 40pt, )
-          ]
-        ]]
-      }
     }
-    
+
+    #if card.at("icon", default: none) != none {
+      place[#box(width: 100%, height: 100%)[
+        #align(top + right)[
+          #image("external/game-icons/_out/DDDDDD/transparent/1x1/" + card.at("icon"), width: 52pt)
+        ]
+      ]]
+    }
+  
     = #text(size: 24pt)[#eval(card.name, mode: "markup", scope: scope)]
     #if card.at("brief", default: none) != none {
       text(size: 16pt)[#eval(card.brief, mode: "markup", scope: scope)]
