@@ -2,6 +2,7 @@ compile:
     typst compile cards.typ cards.pdf
     typst compile rules.typ rules.pdf
     typst compile codex.typ codex.pdf
+    mkdir -p output/
     cp index.html output/
     cp rules.pdf cards.pdf codex.pdf output/
 

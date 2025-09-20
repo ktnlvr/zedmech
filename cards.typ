@@ -52,14 +52,6 @@
         ]
       ]]
     }
-
-    #if card.at("icon", default: none) != none {
-      place[#box(width: 100%, height: 100%)[
-        #align(top + right)[
-          #image("external/game-icons/_out/DDDDDD/transparent/1x1/" + card.at("icon"), width: 52pt)
-        ]
-      ]]
-    }
   
     = #text(size: 24pt)[#eval(card.name, mode: "markup", scope: scope)]
     #if card.at("brief", default: none) != none {

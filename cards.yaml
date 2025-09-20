@@ -16,10 +16,10 @@ cards:
   - name: Frost Beam
     brief: 8#hex 2#heat / 4#damage -3#heat
     family: control
-    text: "Target must gain #heat from anything but moving before doing a move next turn."
+    text: "Target must gain #heat from anything but moving before doing a move next activation."
     icon: lorc/frostfire.svg
   - name: Flamethrower
-    brief: 3#cone 3#heat / 3#heat
+    brief: 3#cone 3#heat / 3#heat 2 _Burn_
     family: control
     icon: lorc/dragon-breath.svg
   - name: Rocket Launcher
@@ -54,7 +54,7 @@ cards:
     text: "Overlaps under 2 don't matter."
     family: heat
   - name: "#passive Shield"
-    text: "Reduce incoming damage by 1, but not lower than 1. Ignored on crits."
+    text: "Once per activation reduce incoming #damage by 1, but not lower than 2. Ignored on crits."
     family: defence
   - name: "#passive Molten Core"
     text: "+1 to hit when #heat>2."
@@ -81,7 +81,7 @@ cards:
     text: "After moving 3 or more #hex. Gain +1 to Punch."
     family: mobility
   - name: "#reaction Hunter Mode"
-    text: "_Destroy a Mech_. Vent all #heat. Move 2#hex."
+    text: "_Destroy a Mech_. Lose all conditions. Vent all #heat. Move 2#hex."
     family: trickery
   - name: "#reaction Recoil Inverter"
     text: "_When Shooting_. Move 2#hex."
@@ -90,7 +90,7 @@ cards:
     text: "Avoid triggering Overwatch if only moved. Trigger all avoided Overwatches if Shooting or Punching."
     family: trickery
   - name: "#passive Pathfinding Override"
-    text: "Ignore difficult terrain effects unless you stop movement in them. Vent 2 extra #heat in difficult terrain."
+    text: "Ignore difficult terrain effects unless you end movement in them. Vent 2 extra #heat in difficult terrain."
     family: mobility
   - name: "#active Gravity Well"
     brief: "2#heat / 6#hex 2#radius"
@@ -101,9 +101,9 @@ cards:
   - name: "#active Target Lock"
     brief: "3#heat"
     text: |
-      Select a target. +2#hex range and +2 to hit against them. 
+      Select a target. They are _Exposed_.
 
-      If they move out of LOS the effect drops.
+      If they move out of line of sight the effect drops.
   - name: "#active Blink Engine"
     brief: "2#heat 4#radius"
     text: "Teleport to any #hex adjacent to a visible target within 4#radius."
@@ -150,18 +150,20 @@ cards:
   - name: "#active Sensor Array"
     text: "Pick one enemy. -1 to evade until their activation."
   - name: "#passive Adaptive Logic Core"
-    text: "Once per turn reroll a 1."
+    text: "Once per activation reroll a 1."
     family: trickery
   - name: "#active Nanite Core"
     text: "Destroy N deployables. Vent 2N#heat"
     family: support
   - name: "#reaction Overload Sigil"
-    text: "_When DETONATING_. Ignore damage, vent all heat.\n\nOnce per game."
+    text: "_When DETONATING_. Ignore #damage, vent all heat.\n\nOnce per game."
     family: heat
   - name: "#reaction Motor Furnace"
     brief: "#passive"
     text: "_Gaining heat from non-Movement._ Move 2#hex."
     family: mobility
+  - name: "#passive Petrol Daemon"
+    text: "Any enemy Mechs 4#radius can not remove _Burn 1_."
   - name: "#passive Suppression Protocol"
     text: "+1#damage for Pushing"
     family: attack
@@ -171,19 +173,37 @@ cards:
   - name: "#passive Hexdense Plating"
     text: ""
     family: defence
+  - name: "#active Target Array"
+    text: "Your next attack does not deal #heat or #damage. The target becomes _Exposed_."
   - name: "#passive Reactive Overdrive"
+  - name: "#active Auto-Turret (Deployable)"
+    text: "Place a turret. It may shoot (12#hex 2#damage) if you Overwatch."
+  - name: "#active Sensor Drone (Deployable)"
+    text: "Place a drone. You and allies have line of sight in 5#radius from the drone's #hex."
+  - name: "#reaction Warm Embrace"
+    text: "_When punching_. If you have more #heat than the target, transfer the difference."
   - name: "#passive Obedience Protocol"
+  - name: "#passive Failsafe Routines"
+  - name: "#passive Predictive Algorithms"
+  - name: "#reaction Feedback Loop"
+    text: "_Successful evasion_. Attacker gains 2#heat."
   - name: "#passive Luck Token"
     text: "A rolled 1 is a 6."
     family: trickery
   - name: "#passive Quantum Doublet"
     text: "+1 to evade."
-  - name: "#passive Cascade"
+  - name: "#active Cascade"
+    text: "Pick an adjacent Mech. It is _Exposed_ 2. This Mech is _Exposed_ 1."
+  - name: "#passive Brood Mother"
+    text: "You may activate a single deployable an additional time."
   - name: "#reaction Grim Echo"
-    text: "_When an allied Mech is killed_. Immediately interrupt the opponent's turn. This Mech activates."
+    text: "_When an allied Mech is killed_. Immediately interrupt the opponent's activation. This Mech activates."
     family: trickery
   - name: "#active Rope Cannon"
     brief: "3#heat 5#radius"
     text: "Pick a target in sight within 5#hex. It may evade. On a fail, immediately pull it towards you."
     icon: delapouite/rope-dart.svg
   - name: "Crab Shell"
+    text: "Be a crab, just like that </3"
+  - name: "#active Coolant Purge"
+    text: "Remove X _Burn_. Gain X #heat. Pick an adjacent Mech. It gains X _Burn_."

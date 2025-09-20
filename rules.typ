@@ -67,13 +67,12 @@ Every mech starts with...
 - 3 Movement (M), how fast your mech moves
 - 3 Load (L), how much your mech can carry
 
-You can buy/sell 2HP and 1 Load for extra 1 Movement.
+You can buy/sell 2HP and 1 Load for extra 1 Movement. For example, you sell 2HP and 1 Load for a movement,
+so now you get a 16 Hull / 4 Move / 3 Load.
 
 == Equipment
 
-Your Mech can bear 2 types of equipment: *Weapons* and *Specials*. They take 1 Load each. 
-
-Every Special can be used as a Mod. A mech may only have one Mod at a time. Make them count.
+Your Mech can bear 2 types of equipment: *Weapons* and *Specials*. They take 1 Load. No repeats.
 
 == Taking a Turn
 
@@ -82,8 +81,10 @@ Every Special can be used as a Mod. A mech may only have one Mod at a time. Make
   - *Shoot* a visible Mech.
   - *Punch* an adjacent Mech.
   - *Move* to available spaces.
+  - *Activate* your equipment.
 3. When done, *Vent* or *Overwatch*.
 4. Pass the turn to the next person.
+5. Repeat until someone wins.
 
 === Rolling
 
@@ -103,9 +104,11 @@ Move the target away from the attacker by the specified amount in #hex. Shown wi
 
 If a wall is in the way take damage equal to the remaining push.
 
+If another Mech is in the way, they both move as if pushed.
+
 === Taking Damage and Heat
 
-Heat (#heat) and Damage (#damage) grow against your Hull. If they overlap the Mech _Detonates_.
+Heat (#heat) and Damage (#damage) grow against your Hull. If they overlap the Mech _Overheats_.
 
 == Turn
 
@@ -120,11 +123,25 @@ If the space is occupied by a Mech it may dodge. For that do a roll. Ignore effe
 Choose an adjacent #hex.
 Gain 3#heat, deal 1#push 2#damage.
 
-If the space is occupied by a Mech it may dodge. For that, do a roll. On a _critical success_ no effects are applied.
+If the space is occupied by a Mech it may dodge. For that, do a roll. On a success no effects are applied.
 
 === Moving
 
 Move your Mech by one #hex for each Movement it has or less. Gain 2 #heat.
+
+=== Activating
+
+Perform the action described on the ability. An ability may only be used once per activation.
+
+=== Reactions
+
+A reaction is formatted as "_A trigger_. An effect". 
+After the event described on the trigger has happened the event is activated.
+Reactions are executed in turn order around the table.
+
+=== Deployables
+
+A _deployable_ can be placed with an action. They occupy a #hex and block line of sight. They have 1 Hull and are destroyed if taking damage or an effect. They never roll to evade. They are immune to heat. Only one deployable from an ability may be active at a time.
 
 === Venting
 
@@ -141,6 +158,26 @@ The weapon is considered fired for the next activation.
 When #heat and #damage overlap the Mech overheats. Roll the amount of dice equal to overlap. Take the lowest. On a success remove all overlap.
 
 An Overheating Mech explodes. All mech in 4#radius evade on a crit. Otherwise they take 3X and 2#heat. 
+
+=== Conditions
+
+Conditions effect Mechs temporarily. They are written as "Name X", where X is the number of activations that this effect sustains. All conditions tick down at the end of an activation.
+
+- *Burn X*. When ending an activation gain 1#heat and 1#damage. 
+- *Exposed X*. Roll an extra dice for all attempts to dodge. Take lowest. The condition is automatically removed when the Mech takes damage.
+
+Conditions do not stack. Instead chose the highest number.
+
+=== Difficult Terrain
+
+Terrain can obstruct your movement.
+
+- Moving in or out of water is an equvialent of a Movement action.
+- Moving up an elevation requires an additional move.
+
+== Takesies-backsies
+
+Any actions may be rolled back up to a dice roll.
 
 == Credit
 
